@@ -40,10 +40,8 @@ public class RummikubGameState extends GameState {
     private ArrayList<Tile> player1_hand = new ArrayList<>();
     private ArrayList<Tile> player2_hand = new ArrayList<>();
 
-
     //2-D Array for both player hands and player tile
     private ArrayList<ArrayList<Tile>> player_hand = new ArrayList<>();
-
 
     //This is the list of tiles currently on the board
     private ArrayList<Tile> t_board = new ArrayList<Tile>();
@@ -107,33 +105,76 @@ public class RummikubGameState extends GameState {
 
     }
 
-    //Helper method to shuffle the tile pile once it's instantiated
-    public void shuffle(ArrayList<Tile> deck){
-        Collections.shuffle(deck);
+    // Helper method to change the turn of the player
+    public void changeTurn(){
+        if (curr_turn == 0) curr_turn = 1;
+        else if (curr_turn == 1) curr_turn = 0;
     }
 
-    //Helper Function that adds all the tiles in the game (except for jokers) to an arrayList
-    private void setup_tile(ArrayList<Tile> list){
-        for(int i = 0; i < 1; i++){
+    //Helper method for adding tiles to player hand(s)
+    private void drawTile(ArrayList<Tile> player_hand, ArrayList<Tile> deck) {
+        player_hand.add(deck.get(0));
+        deck.remove(0);
+    }
+
+    //This action should draw tile for the current player. This tile will be taken from the tile pile and added to the current players hand
+    public boolean drawTile_action(ArrayList<Tile> deck){
+        if (curr_turn == 0){
+            //Add tile from tile pile to player_1's hand
+            drawTile(player1_hand, deck);
+            changeTurn();
+            return true;
+
+        } else {
+
+            if(curr_turn == 1){
+                //Add tile from tile pile to player_2's hand
+                drawTile(player2_hand, deck);
+                changeTurn();
+                return true;
+            }
+        }
+        return false;
+
+    }
+
+    //Helper function that adds all the tiles in the game (except for jokers) to an arrayList
+    private void setup_pile(ArrayList<Tile> deck){
+        for(int i = 0; i < 2; i++){
             //This should create tiles from 1 - 12 for each color
             for(int j = 0; i < 13; i++){
-                list.add(new Tile(1, i + 1));
-                list.add(new Tile(2, i + 1));
-                list.add(new Tile(3, i + 1));
-                list.add(new Tile(4, i + 1));
+                deck.add(new Tile(1, i + 1));
+                deck.add(new Tile(2, i + 1));
+                deck.add(new Tile(3, i + 1));
+                deck.add(new Tile(4, i + 1));
 
             }
         }
     }
 
-    //Helper Function that sets up the 2D list
+    //Helper method for adding tiles to player hand(s) at the start of the game
+    private void mulligan(ArrayList<Tile> deck) {
+        for(int i = 0; i < 7; i++) {
+            drawTile(player1_hand, deck);
+            drawTile(player2_hand, deck);
+        }
+    }
+
+    //Helper method to shuffle the tile pile once it's instantiated
+    public void shuffle(ArrayList<Tile> deck){
+        Collections.shuffle(deck);
+    }
+
+
+    //Helper function that sets up the 2D list
     private void setup(ArrayList<ArrayList<Tile>> list, ArrayList<Tile> deck){
         //First two are the player hands
         list.add(new ArrayList<Tile>());
         list.add(new ArrayList<Tile>());
         //This is the tile pile
-        setup_tile(deck); //Instantiating all the tiles in the deck
+        setup_pile(deck); //Instantiating all the tiles in the deck
         shuffle(deck);
+        mulligan(deck);
 
     }
 
@@ -150,40 +191,6 @@ public class RummikubGameState extends GameState {
         //If neither player hand is empty then the game continues
         return false;
     }
-
-    //This action should draw tile for the current player. This tile will be taken from the tile pile and added to the current players hand
-    public boolean drawTile(){
-        if (curr_turn == 0){
-            //Add tile from tile pile to player_0's hand
-            //Remove this tile from tile pile
-            changeTurn();
-            return true;
-        }
-        if(curr_turn == 1){
-            //Add tile from tile pile to player_1's hand
-            //Remove this tile from tile pile
-            changeTurn();
-            return true;
-        }
-        return false;
-
-    }
-
-    // Helper method to change the turn of the player
-    public void changeTurn(){
-        if (curr_turn == 0){
-            curr_turn = 1;
-            return;
-        }
-        if (curr_turn == 1){
-            curr_turn =0;
-            return;
-        }
-    }
-
-
-
-
 
     //Getters and Setters
     public int getCurr_turn() {

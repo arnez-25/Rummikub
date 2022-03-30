@@ -77,7 +77,6 @@ public class RummiView extends SurfaceView {
     public void createTile(Canvas c){
         //Draws the tile (temp values change later)
         c.drawRect(5, 5, 115, 217, tilePaint);
-
         c.drawText("" + info.getTileNum(), 10, 20, tilePaint_black);
     }
 

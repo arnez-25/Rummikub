@@ -34,18 +34,18 @@ public class RummikubLocalGame extends LocalGame {
     protected String checkIfGameOver() {
         //Basic check to see either players have emptied their hands
         if(official_ref.get_Playerhand().get(0).isEmpty()){
-            return "Player 1 has won";
+            return "Player 1 has won the game!";
         }
-        if(official_ref.get_Playerhand().get(1).isEmpty()){
-            return "Player 2 has won the game";
+        else if (official_ref.get_Playerhand().get(1).isEmpty()){
+            return "Player 2 has won the game!";
         }
         // Additional check may be required if the time limit has been reached
-        return null;
+        else return null;
     }
 
     @Override
     protected boolean makeMove(GameAction action) {
-        if(action instanceof DrawTile){
+        if (action instanceof DrawTile){
             return true;
         }
         return true;
