@@ -62,6 +62,7 @@ public class RummikubGameState extends GameState {
         this.player1_hand = copy.getPlayer2_hand();
         this.player2_hand = copy.getPlayer2_hand();
         this.t_pile = copy.getT_pile();
+        this.player_hand = copy.player_hand;
 
     }
 
@@ -104,6 +105,10 @@ public class RummikubGameState extends GameState {
 
     }
 
+    //Helper method to shuffle the tile pile once it's instantiated
+    public void shuffle(ArrayList<Tile> deck){
+        Collections.shuffle(deck);
+    }
 
     //Helper Function that adds all the tiles in the game (except for jokers) to an arrayList
     private void setup_tile(ArrayList<Tile> list){
@@ -120,13 +125,13 @@ public class RummikubGameState extends GameState {
     }
 
     //Helper Function that sets up the 2D list
-    private void setup(ArrayList<ArrayList<Tile>> list){
+    private void setup(ArrayList<ArrayList<Tile>> list, ArrayList<Tile> deck){
         //First two are the player hands
         list.add(new ArrayList<Tile>());
         list.add(new ArrayList<Tile>());
         //This is the tile pile
-        list.add(new ArrayList<Tile>());
-        setup_tile(list.get(2));    //Instatiating all tiles for the tile pile
+        setup_tile(deck); //Instantiating all the tiles in the deck
+        shuffle(deck);
 
     }
 
@@ -174,10 +179,7 @@ public class RummikubGameState extends GameState {
         }
     }
     
-    //Helper method to shuffle the tile pile once it's instantiated
-    public void shuffle(ArrayList<Tile> deck){
-        Collections.shuffle(deck);
-    }
+
 
 
 
@@ -229,6 +231,8 @@ public class RummikubGameState extends GameState {
     public void setT_pile(ArrayList<Tile> t_pile) {
         this.t_pile = t_pile;
     }
+
+    public ArrayList<ArrayList<Tile>> get_Playerhand(){ return player_hand;}
 
 
 
