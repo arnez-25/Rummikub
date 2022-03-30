@@ -1,5 +1,7 @@
 package edu.up.cs301.rummikub;
 
+import android.graphics.Color;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -116,9 +118,9 @@ public class RummikubGameState extends GameState {
             //This should create tiles from 1 - 12 for each color
             for(int j = 0; i < 13; i++){
                 list.add(new Tile(1, i + 1));
-                list.add(new Tile(2, i +1));
-                list.add(new Tile(3, i +1));
-                list.add(new Tile(4, i +1));
+                list.add(new Tile(2, i + 1));
+                list.add(new Tile(3, i + 1));
+                list.add(new Tile(4, i + 1));
 
             }
         }
@@ -178,7 +180,7 @@ public class RummikubGameState extends GameState {
             return;
         }
     }
-    
+
 
 
 

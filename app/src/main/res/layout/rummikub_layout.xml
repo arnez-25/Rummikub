@@ -37,10 +37,13 @@
                 android:id="@+id/button_quit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_weight="0"
+                android:background="@color/purple_500"
                 android:text="Quit"
-                 />
+                android:textColor="#E1BEE7" />
         </LinearLayout>
 
         <LinearLayout
@@ -82,31 +85,39 @@
 
                     <Button
                         android:id="@+id/button_draw"
+                        style="@android:style/Widget.Holo.Button.Borderless"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="87dp"
                         android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:background="@color/purple_500"
                         android:text="+"
-                         />
+                        android:textSize="48sp" />
 
-                    <ImageButton
+                    <Button
                         android:id="@+id/button_undo"
-                        style="@android:style/Widget.ImageButton"
+                        style="@android:style/Widget.Holo.Button.Borderless"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp"
                         android:layout_weight="0"
                         android:background="@color/purple_500"
                         android:minWidth="48dp"
-                        android:minHeight="48dp"
 
-                         />
+                        android:minHeight="48dp"
+                        android:text="Undo"
+                        android:textSize="20sp" />
 
                     <Button
                         android:id="@+id/button_done"
+                        style="@android:style/Widget.DeviceDefault.Button.Borderless"
                         android:layout_width="match_parent"
-                        android:layout_height="60dp"
+                        android:layout_height="wrap_content"
+                        android:background="@color/purple_500"
                         android:maxHeight="0dp"
                         android:text="Done"
-                        />
+                        android:textColor="#FFFFFF"
+                        android:textSize="20sp" />
 
                 </LinearLayout>
 

@@ -33,6 +33,22 @@ public class Tile {
         this.tileNum = orig.tileNum;
     }
 
+    public int getColor() {
+        return color;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
+    }
+
+    public int getTileNum() {
+        return tileNum;
+    }
+
+    public void setTileNum(int tileNum) {
+        this.tileNum = tileNum;
+    }
+
     @Override
     public String toString() {
         return color + " " + tileNum;

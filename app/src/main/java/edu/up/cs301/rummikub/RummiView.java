@@ -78,7 +78,7 @@ public class RummiView extends SurfaceView {
         //Draws the tile (temp values change later)
         c.drawRect(5, 5, 115, 217, tilePaint);
 
-        c.drawText(info.getTileNum, 10, 20, info.getTileColor);
+        c.drawText("" + info.getTileNum(), 10, 20, tilePaint_black);
     }
 
     public void createGrid(Canvas c){
@@ -98,8 +98,9 @@ public class RummiView extends SurfaceView {
           Solution: Apparently all I needed to do was use the drawLine feature that's part of the Canvas import
          */
 
-        final int vLinesCount = colCount;
-        for (int i = 0; i <= vLinesCount; i++)
+        // vertical lines
+
+        for (int i = 0; i <= colCount; i++)
         {
             float pos = (width / colCount) * (i);
             c.drawLine(pos, 0, pos, height, gridPaint);
@@ -107,8 +108,7 @@ public class RummiView extends SurfaceView {
 
         // horizontal lines
 
-        final int hLinesCount = rowCount;
-        for (int i = 0; i <= hLinesCount; i++)
+        for (int i = 0; i <= rowCount; i++)
         {
             float pos = (height / rowCount) * (i);
             c.drawLine(0, pos, width, pos, gridPaint);
