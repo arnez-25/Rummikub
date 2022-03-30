@@ -71,17 +71,14 @@ public class RummiView extends SurfaceView {
     public void onDraw(Canvas c) {
         //Need to add: Way to get info for drawings (location, height, width)
         createGrid(c);
-        //createTile(c);
-        //addNum(c);
+        createTile(c);
     }
 
     public void createTile(Canvas c){
         //Draws the tile (temp values change later)
-        c.drawRect(5, 5, 32, 43, tilePaint);
-    }
+        c.drawRect(5, 5, 115, 217, tilePaint);
 
-    public void addNum(Canvas c){
-        //Draws number to be added to tile
+        c.drawText(info.getTileNum, 10, 20, info.getTileColor);
     }
 
     public void createGrid(Canvas c){
