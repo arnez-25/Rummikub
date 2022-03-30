@@ -1,6 +1,7 @@
 package edu.up.cs301.rummikub;
 
-import edu.up.cs301.game.LocalGame;
+import edu.up.cs301.game.GamePlayer;
+import edu.up.cs301.game.actionMsg.GameAction;
 
 /**
  * @authors Jacob Arnez, Maja Elliott, Dylan Kim, Chase Ohmstede
@@ -12,7 +13,9 @@ import edu.up.cs301.game.LocalGame;
  *
  * */
 
-public class PlaceTile {
+public class PlaceTile extends GameAction {
+
+    public PlaceTile(GamePlayer player){ super(player); }
 
     /**
      * Checks to do:

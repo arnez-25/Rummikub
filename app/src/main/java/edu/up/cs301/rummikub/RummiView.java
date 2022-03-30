@@ -45,7 +45,6 @@ public class RummiView extends SurfaceView {
         setWillNotDraw(false);
 
         //initialize colors
-        //NOTE TO EVERYONE: These colors are placeholders, please change later.
         tilePaint.setColor(tileColor);
         tilePaint.setStyle(Paint.Style.FILL);
 
