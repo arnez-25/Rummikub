@@ -12,7 +12,7 @@ import edu.up.cs301.pig.PigRollAction;
  *
  * Compiles AIs
  *
- * Bugs:
+ * Bugs: AI not fully finished.
  *
  * */
 
@@ -26,10 +26,10 @@ public class AI extends GameComputerPlayer {
     protected void receiveInfo(GameInfo info) {
         RummikubGameState recieved_State = new RummikubGameState ((RummikubGameState) info);
 
-        if(playerNum != recieved_State.getCurr_turn()){
+        if(playerNum != recieved_State.getPlayerId()){
             return;
         }
-        if (playerNum == recieved_State.getCurr_turn()){
+        if (playerNum == recieved_State.getPlayerId()){
             //if there are tiles in the pile it will continue to draw
             //else it will place tiles
             if (){
