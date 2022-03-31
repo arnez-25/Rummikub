@@ -171,7 +171,6 @@ public class RummikubGameState extends GameState {
         Collections.shuffle(deck);
     }
 
-
     //Helper function that sets up the 2D list
     private void setup(ArrayList<ArrayList<Tile>> list, ArrayList<Tile> deck){
         //First two are the player hands
@@ -183,8 +182,6 @@ public class RummikubGameState extends GameState {
         mulligan(deck);
         transfer_tile(list.get(0), deck);
         transfer_tile(list.get(1), deck);
-
-
     }
 
     //Checks if either player hand is empty. This should be called at the end of each turn

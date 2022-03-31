@@ -25,6 +25,7 @@ public class RummiView extends SurfaceView {
     public Tile info;
 
     private static final int tileColor        = Color.parseColor("#FAD3BB");
+    private static final int tileColor_invis  = Color.parseColor("#FAD3BB");
     private static final int tileColor_black  = Color.parseColor("#000000");
     private static final int tileColor_blue   = Color.parseColor("#29ABE2");
     private static final int tileColor_red    = Color.parseColor("#ED1C24");
@@ -33,6 +34,7 @@ public class RummiView extends SurfaceView {
     private static final int trayColor        = Color.parseColor("#AE9276");
 
     Paint tilePaint         = new Paint();
+    Paint tilePaint_invis   = new Paint();
     Paint tilePaint_black   = new Paint();
     Paint tilePaint_blue    = new Paint();
     Paint tilePaint_red     = new Paint();
@@ -49,9 +51,13 @@ public class RummiView extends SurfaceView {
         info = new Tile();
         setWillNotDraw(false);
 
-        //initialize colors
+        // initialize colors
         tilePaint.setColor(tileColor);
         tilePaint.setStyle(Paint.Style.FILL);
+
+        // to turn tile color invisible, set style to STROKE instead of FILL
+        tilePaint_invis.setColor(tileColor_invis);
+        tilePaint.setStyle(Paint.Style.STROKE);
 
         tilePaint_black.setColor(tileColor_black);
         tilePaint.setStyle(Paint.Style.FILL);
