@@ -24,6 +24,7 @@ public class RummikubMainActivity extends GameMainActivity {
      * @return
      * 		the new configuration object, representing the default configuration
      */
+
     @Override
     public GameConfig createDefaultConfig() {
 
