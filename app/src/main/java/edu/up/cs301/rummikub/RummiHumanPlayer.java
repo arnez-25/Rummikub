@@ -164,6 +164,19 @@ public class RummiHumanPlayer extends GameHumanPlayer implements View.OnTouchLis
     public boolean onTouch(View view, MotionEvent motionEvent) {
        int x = (int) motionEvent.getX();
        int y = (int) motionEvent.getY();
-        return false;
+       int box_x = 0;
+       int box_y = 0;
+
+       //Hitboxes for tiles
+       for (int i = 0; i < ((float) view.getHeight() / 3) * 2; i += (view.getWidth()/4)) {
+           for (int j = 0; j < view.getWidth(); j += (view.getWidth()/13)) {
+               if (x < i && x >= i + (view.getWidth()/4) && y < j && y >= j + (view.getWidth()/13)) {
+                   box_x = i / (view.getWidth()/4);
+                   box_y = j / (view.getWidth()/13);
+               }
+           }
+       }
+
+       return false;
     }
 }
