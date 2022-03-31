@@ -29,6 +29,7 @@ public class AI extends GameComputerPlayer {
         if(playerNum != recieved_State.getPlayerId()){
             return;
         }
+        /*
         if (playerNum == recieved_State.getPlayerId()){
             //if there are tiles in the pile it will continue to draw
             //else it will place tiles
@@ -41,6 +42,8 @@ public class AI extends GameComputerPlayer {
                 game.sendAction(place);
             }
         }
+
+        */
     }
     //Needs to be able to tell which AI is which
     //Updates game and makes decisions (vary between AI)

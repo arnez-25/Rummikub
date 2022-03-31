@@ -84,7 +84,7 @@ public class RummiView extends SurfaceView {
     public void onDraw(Canvas c) {
         //Need to add: Way to get info for drawings (location, height, width)
         createGrid(c);
-        createTile(c);
+        //createTile(c);
         createTray(c);
     }
 
@@ -124,6 +124,28 @@ public class RummiView extends SurfaceView {
             c.drawLine(0, pos, width_grid, pos, gridPaint);
         }
 
+        /**
+         *   Instead of drawing new tiles on the surface view, we instead
+         *   draw invisible tiles within each of the grid allotments.
+         *   When a player wants to play a tile from their hand onto the
+         *   board, we use OnTouch() hitboxes to determine which invisible
+         *   tile was selected. Then, we set the Paint style from STROKE to
+         *   FILL (thus making it visible), and reference the tile number
+         *   and color from hand to create a matching drawText.
+         *      - Chase
+         */
+
+        // invis tile placement
+
+        for (int i = 0; i < colCount; i++) {
+
+            for (int j = 0; j < rowCount; j++) {
+
+                float pos_x = (width_grid  / colCount) * (i);
+                float pos_y = (height_grid / rowCount) * (j);
+                c.drawRect(pos_x + 5, pos_y + 5, pos_x + 115, pos_y + 140, tilePaint);
+            }
+        }
     }
 
     /* in charge of drawing the player's hand tray for the .xml */
