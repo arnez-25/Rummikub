@@ -46,7 +46,7 @@ public class RummikubLocalGame extends LocalGame {
     @Override
     protected boolean makeMove(GameAction action) {
         if (action instanceof DrawTile){
-            return true;
+           return official_ref.drawTile_action(official_ref.getT_pile());   //returns true if tile was drawn else move was invalid or t_pile is empty
         }
         return true;
     }

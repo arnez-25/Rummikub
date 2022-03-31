@@ -103,6 +103,9 @@ public class RummikubGameState extends GameState {
         return str_return;
 
     }
+
+
+
     // helper method to transfer initial tiles in each players deck
     private void transfer_tile( ArrayList<Tile> hand,  ArrayList<Tile> deck){
         for(int i = 0; i < 7;i++){
@@ -126,6 +129,10 @@ public class RummikubGameState extends GameState {
 
     //This action should draw tile for the current player. This tile will be taken from the tile pile and added to the current players hand
     public boolean drawTile_action(ArrayList<Tile> deck){
+        //Check if deck is empty
+        if (deck.isEmpty()){
+            return false;
+        }
         if (curr_turn == 0){
             //Add tile from tile pile to player_1's hand
             drawTile(player1_hand, deck);
