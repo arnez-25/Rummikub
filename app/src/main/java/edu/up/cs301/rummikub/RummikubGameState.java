@@ -106,9 +106,17 @@ public class RummikubGameState extends GameState {
         return str_return;
 
     }
+    // helper method to transfer initial tiles in each players deck
+    private void transfer_tile( ArrayList<Tile> hand,  ArrayList<Tile> deck){
+        for(int i = 0; i < 7;i++){
+            hand.add(deck.get(0));
+            deck.remove(0);     // The ArrayList remove method shifts all elements to the left
+            // In theory I can keep the index at 0 since removing from deck will just shift the object to the let
+        }
+    }
 
     //Helper method to shuffle the tile pile once it's instantiated
-    public void shuffle(ArrayList<Tile> deck){
+    private void shuffle(ArrayList<Tile> deck){
         Collections.shuffle(deck);
     }
 
@@ -134,6 +142,9 @@ public class RummikubGameState extends GameState {
         //This is the tile pile
         setup_tile(deck); //Instantiating all the tiles in the deck
         shuffle(deck);
+        transfer_tile(list.get(0), deck);
+        transfer_tile(list.get(1), deck);
+
 
     }
 
