@@ -30,6 +30,7 @@ public class RummiView extends SurfaceView {
     private static final int tileColor_red    = Color.parseColor("#ED1C24");
     private static final int tileColor_orange = Color.parseColor("#FBB03B");
     private static final int gridColor        = Color.parseColor("#FFFFFF");
+    private static final int trayColor        = Color.parseColor("#AE9276");
 
     Paint tilePaint         = new Paint();
     Paint tilePaint_black   = new Paint();
@@ -37,6 +38,10 @@ public class RummiView extends SurfaceView {
     Paint tilePaint_red     = new Paint();
     Paint tilePaint_orange  = new Paint();
     Paint gridPaint         = new Paint();
+    Paint trayPaint         = new Paint();
+
+    private final int rowCount      = 4;  //# of rows in grid
+    private final int colCount      = 13; //# of cols in grid
 
     public RummiView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -64,6 +69,9 @@ public class RummiView extends SurfaceView {
         gridPaint.setStyle(Paint.Style.STROKE);
         gridPaint.setStrokeWidth(3);
 
+        trayPaint.setColor(trayColor);
+        trayPaint.setStyle(Paint.Style.FILL);
+
     }
 
     @Override
@@ -71,6 +79,7 @@ public class RummiView extends SurfaceView {
         //Need to add: Way to get info for drawings (location, height, width)
         createGrid(c);
         createTile(c);
+        createTray(c);
     }
 
     public void createTile(Canvas c){
@@ -81,12 +90,6 @@ public class RummiView extends SurfaceView {
 
     public void createGrid(Canvas c){
 
-        final float height = getHeight();
-        final float width = getWidth();
-
-        final int rowCount      = 4;  //# of rows in grid
-        final int colCount      = 13; //# of cols in grid
-
         /*
           External Citation
           Date: 27 March 2022
@@ -96,21 +99,33 @@ public class RummiView extends SurfaceView {
           Solution: Apparently all I needed to do was use the drawLine feature that's part of the Canvas import
          */
 
+        float height_grid = ((float) getHeight() / 3) * 2;
+        float width_grid = getWidth();
+
         // vertical lines
 
         for (int i = 0; i <= colCount; i++)
         {
-            float pos = (width / colCount) * (i);
-            c.drawLine(pos, 0, pos, height, gridPaint);
+            float pos = (width_grid / colCount) * (i);
+            c.drawLine(pos, 0, pos, height_grid, gridPaint);
         }
 
         // horizontal lines
 
         for (int i = 0; i <= rowCount; i++)
         {
-            float pos = (height / rowCount) * (i);
-            c.drawLine(0, pos, width, pos, gridPaint);
+            float pos = (height_grid / rowCount) * (i);
+            c.drawLine(0, pos, width_grid, pos, gridPaint);
         }
+
+    }
+
+    /* in charge of drawing the player's hand tray for the .xml */
+    public void createTray(Canvas c) {
+
+        float height_tray = (((float) getHeight() / 3) * 2) + 40;
+        float width_tray = getWidth() - 40;
+        c.drawRect(40, height_tray, width_tray, height_tray + 225, trayPaint);
 
     }
 

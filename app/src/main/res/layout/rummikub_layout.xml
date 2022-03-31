@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -21,11 +22,12 @@
             android:paddingRight="2dp">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/textview_timer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:text="Time:" />
+                android:text="Time:"
+                android:textColor="@color/white" />
 
             <View
                 android:id="@+id/gap"
@@ -42,8 +44,10 @@
                 android:layout_marginRight="10dp"
                 android:layout_weight="0"
                 android:background="@color/purple_500"
+                android:minHeight="48dp"
                 android:text="Quit"
-                android:textColor="#E1BEE7" />
+                android:textColor="#E1BEE7"
+                tools:ignore="TouchTargetSizeCheck" />
         </LinearLayout>
 
         <LinearLayout
@@ -79,20 +83,27 @@
 
                 <LinearLayout
                     android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
+                    android:layout_height="340dp"
                     android:orientation="vertical">
 
                     <Button
                         android:id="@+id/button_draw"
                         style="@android:style/Widget.Holo.Button.Borderless"
                         android:layout_width="match_parent"
-                        android:layout_height="87dp"
+                        android:layout_height="114dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
                         android:background="@color/purple_500"
                         android:text="+"
                         android:textSize="48sp" />
+
+                    <TextView
+                        android:id="@+id/textview_deck"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="80dp"
+                        android:text="Tiles: "
+                        android:textColor="@color/white" />
 
                     <Button
                         android:id="@+id/button_undo"
@@ -113,6 +124,7 @@
                         style="@android:style/Widget.DeviceDefault.Button.Borderless"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
                         android:background="@color/purple_500"
                         android:maxHeight="0dp"
                         android:text="Done"

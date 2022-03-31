@@ -32,7 +32,6 @@ public class RummikubGameState extends GameState {
      *  - timer
      */
 
-
     private int curr_turn;
     private int timer;
 
@@ -125,28 +124,27 @@ public class RummikubGameState extends GameState {
             changeTurn();
             return true;
 
-        } else {
+        } else if(curr_turn == 1){
+            //Add tile from tile pile to player_2's hand
+            drawTile(player2_hand, deck);
+            changeTurn();
+            return true;
 
-            if(curr_turn == 1){
-                //Add tile from tile pile to player_2's hand
-                drawTile(player2_hand, deck);
-                changeTurn();
-                return true;
-            }
         }
+
         return false;
 
     }
 
     //Helper function that adds all the tiles in the game (except for jokers) to an arrayList
     private void setup_pile(ArrayList<Tile> deck){
-        for(int i = 0; i < 2; i++){
+        for(int i = 1; i <= 2; i++){
             //This should create tiles from 1 - 12 for each color
-            for(int j = 0; i < 13; i++){
-                deck.add(new Tile(1, i + 1));
-                deck.add(new Tile(2, i + 1));
-                deck.add(new Tile(3, i + 1));
-                deck.add(new Tile(4, i + 1));
+            for(int j = 1; j <= 13; j++){
+                deck.add(new Tile(1, j));
+                deck.add(new Tile(2, j));
+                deck.add(new Tile(3, j));
+                deck.add(new Tile(4, j));
 
             }
         }

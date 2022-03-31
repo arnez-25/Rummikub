@@ -143,6 +143,7 @@ View.OnClickListener {
 		// Initialize the layout
 		setContentView(R.layout.game_config_main);
 
+
 		// create the default configuration for this game
 		this.config = createDefaultConfig();
 		
