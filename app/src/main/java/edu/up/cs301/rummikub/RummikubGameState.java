@@ -32,7 +32,7 @@ public class RummikubGameState extends GameState {
      *  - timer
      */
 
-    private int curr_turn;
+    private int playerId;
     private int timer;
 
     //These are the player hands
@@ -43,24 +43,24 @@ public class RummikubGameState extends GameState {
     private ArrayList<ArrayList<Tile>> player_hand = new ArrayList<>();
 
     //This is the list of tiles currently on the board
-    private ArrayList<Tile> t_board = new ArrayList<Tile>();
+    private ArrayList<Tile> board = new ArrayList<Tile>();
 
     //This is the pile of tiles the players are gonna draw from
-    private ArrayList<Tile> t_pile = new ArrayList<Tile>();
+    private ArrayList<Tile> deck = new ArrayList<Tile>();
 
 
     public RummikubGameState() {
-        curr_turn = 0;
+        playerId = 0;
         timer = 100;
 
     }
     //Copy Constructor I don't know if it's deep copy since the ArrayList aren't fully instantiated
     public RummikubGameState(RummikubGameState copy){
-        this.curr_turn = copy.getCurr_turn();
+        this.playerId = copy.getPlayerId();
         this.timer = copy.getTimer();
         this.player1_hand = copy.getPlayer2_hand();
         this.player2_hand = copy.getPlayer2_hand();
-        this.t_pile = copy.getT_pile();
+        this.deck = copy.getDeck();
         this.player_hand = copy.player_hand;
 
     }
@@ -68,7 +68,7 @@ public class RummikubGameState extends GameState {
     @Override
     public String toString() {
 
-        String str_player1_hand = "", str_player2_hand = "", str_t_board = "", str_t_pile = "";
+        String str_player1_hand = "", str_player2_hand = "", str_board = "", str_deck = "";
 
         for (int i = 0; i < player1_hand.size(); i++) {
             str_player1_hand += player1_hand.get(i) + "\n";
@@ -78,27 +78,27 @@ public class RummikubGameState extends GameState {
             str_player2_hand += player2_hand.get(i) + "\n";
         }
 
-        for (int i = 0; i < t_board.size(); i++) {
-            str_t_board += t_board.get(i) + "\n";
+        for (int i = 0; i < board.size(); i++) {
+            str_board += board.get(i) + "\n";
         }
 
-        for (int i = 0; i < t_pile.size(); i++) {
-            str_t_pile += t_pile.get(i) + "\n";
+        for (int i = 0; i < deck.size(); i++) {
+            str_deck += deck.get(i) + "\n";
         }
 
         String str_return
 
                 = "~~ Current Game Info ~~                      \n\n"
-                + "Currently Player " + curr_turn + "'s Turn    \n"
+                + "Currently Player " + playerId + "'s Turn    \n"
                 + "Timer: " + timer + "s                        \n\n"
                 + "Player 1 Hand:                               \n"
                 + str_player1_hand + "                          \n\n"
                 + "Player 2 Hand:                               \n"
                 + str_player2_hand + "                          \n\n"
                 + "Tiles on Board:                              \n"
-                + str_t_board + "                               \n\n"
+                + str_board + "                               \n\n"
                 + "Tiles in Pile:                               \n"
-                + str_t_pile;
+                + str_deck;
 
         return str_return;
 
@@ -114,8 +114,8 @@ public class RummikubGameState extends GameState {
 
     // Helper method to change the turn of the player
     public void changeTurn(){
-        if (curr_turn == 0) curr_turn = 1;
-        else if (curr_turn == 1) curr_turn = 0;
+        if (playerId == 0) playerId = 1;
+        else if (playerId == 1) playerId = 0;
     }
 
     //Helper method for adding tiles to player hand(s)
@@ -126,13 +126,13 @@ public class RummikubGameState extends GameState {
 
     //This action should draw tile for the current player. This tile will be taken from the tile pile and added to the current players hand
     public boolean drawTile_action(ArrayList<Tile> deck){
-        if (curr_turn == 0){
+        if (playerId == 0){
             //Add tile from tile pile to player_1's hand
             drawTile(player1_hand, deck);
             changeTurn();
             return true;
 
-        } else if(curr_turn == 1){
+        } else if(playerId == 1){
             //Add tile from tile pile to player_2's hand
             drawTile(player2_hand, deck);
             changeTurn();
@@ -199,12 +199,12 @@ public class RummikubGameState extends GameState {
     }
 
     //Getters and Setters
-    public int getCurr_turn() {
-        return curr_turn;
+    public int getPlayerId() {
+        return playerId;
     }
 
-    public void setCurr_turn(int curr_turn) {
-        this.curr_turn = curr_turn;
+    public void setPlayerId(int playerId) {
+        this.playerId = playerId;
     }
 
     public int getTimer() {
@@ -231,23 +231,23 @@ public class RummikubGameState extends GameState {
         this.player2_hand = player2_hand;
     }
 
-    public ArrayList<Tile> getT_board() {
-        return t_board;
+    public ArrayList<Tile> getBoard() {
+        return board;
     }
 
-    public void setT_board(ArrayList<Tile> t_board) {
-        this.t_board = t_board;
+    public void setBoard(ArrayList<Tile> board) {
+        this.board = board;
     }
 
-    public ArrayList<Tile> getT_pile() {
-        return t_pile;
+    public ArrayList<Tile> getDeck() {
+        return deck;
     }
 
-    public void setT_pile(ArrayList<Tile> t_pile) {
-        this.t_pile = t_pile;
+    public void setDeck(ArrayList<Tile> deck) {
+        this.deck = deck;
     }
 
-    public ArrayList<ArrayList<Tile>> get_Playerhand(){ return player_hand;}
+    public ArrayList<ArrayList<Tile>> getPlayerHand(){ return player_hand;}
 
 
 

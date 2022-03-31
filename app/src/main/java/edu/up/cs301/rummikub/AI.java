@@ -26,10 +26,10 @@ public class AI extends GameComputerPlayer {
     protected void receiveInfo(GameInfo info) {
         RummikubGameState recieved_State = new RummikubGameState ((RummikubGameState) info);
 
-        if(playerNum != recieved_State.getCurr_turn()){
+        if(playerNum != recieved_State.getPlayerId()){
             return;
         }
-        if (playerNum == recieved_State.getCurr_turn()){
+        if (playerNum == recieved_State.getPlayerId()){
             DrawTile draw = new DrawTile(this);
             game.sendAction(draw);
         }

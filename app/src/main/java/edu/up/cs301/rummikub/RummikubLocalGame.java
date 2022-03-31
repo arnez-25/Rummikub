@@ -33,10 +33,10 @@ public class RummikubLocalGame extends LocalGame {
     @Override
     protected String checkIfGameOver() {
         //Basic check to see either players have emptied their hands
-        if(official_ref.get_Playerhand().get(0).isEmpty()){
+        if(official_ref.getPlayerHand().get(0).isEmpty()){
             return "Player 1 has won the game!";
         }
-        else if (official_ref.get_Playerhand().get(1).isEmpty()){
+        else if (official_ref.getPlayerHand().get(1).isEmpty()){
             return "Player 2 has won the game!";
         }
         // Additional check may be required if the time limit has been reached

@@ -31,7 +31,7 @@ public class RummikubMainActivity extends GameMainActivity {
         // Define the allowed player types
         ArrayList<GamePlayerType> playerTypes = new ArrayList<GamePlayerType>();
 
-        // Pig has two player types:  human and computer
+        // Rummikub has two player types:  human and computer
         playerTypes.add(new GamePlayerType("Local Human Player") {
             public GamePlayer createPlayer(String name) {
                 return new RummiHumanPlayer(name);
@@ -41,7 +41,7 @@ public class RummikubMainActivity extends GameMainActivity {
                 return new AI(name);
             }});
 
-        // Create a game configuration class for Pig:
+        // Create a game configuration class for Rummikub:
         GameConfig defaultConfig = new GameConfig(playerTypes, 2, 2, "Rummikub", PORT_NUMBER);
         defaultConfig.addPlayer("Human", 0); // player 1: a human player
         defaultConfig.addPlayer("Computer", 1); // player 2: a computer player

@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
+import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
@@ -142,7 +143,7 @@ View.OnClickListener {
 
 		// Initialize the layout
 		setContentView(R.layout.game_config_main);
-
+		setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE); // to be removed later
 
 		// create the default configuration for this game
 		this.config = createDefaultConfig();
@@ -435,7 +436,7 @@ View.OnClickListener {
 		if (this.config == null)
 			return;
 
-		// Set the title text using the game's name
+ 		// Set the title text using the game's name
 		this.setTitle(config.getGameName() + " Configuration");
 
 		// place the pages in the tabbed dialog
