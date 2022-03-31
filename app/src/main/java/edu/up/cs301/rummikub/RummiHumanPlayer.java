@@ -1,6 +1,8 @@
 package edu.up.cs301.rummikub;
 
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.SurfaceView;
 import android.view.View;
 
 import edu.up.cs301.game.GameHumanPlayer;
@@ -19,7 +21,7 @@ import edu.up.cs301.game.infoMsg.GameInfo;
  *
  * */
 
-public class RummiHumanPlayer extends GameHumanPlayer {
+public class RummiHumanPlayer extends GameHumanPlayer implements View.OnTouchListener {
 
 
     /**
@@ -42,5 +44,12 @@ public class RummiHumanPlayer extends GameHumanPlayer {
     @Override
     public void setAsGui(GameMainActivity activity) {
         activity.setContentView(R.layout.rummikub_layout);
+    }
+
+    @Override
+    public boolean onTouch(View view, MotionEvent motionEvent) {
+       int x = (int) motionEvent.getX();
+       int y = (int) motionEvent.getY();
+        return false;
     }
 }

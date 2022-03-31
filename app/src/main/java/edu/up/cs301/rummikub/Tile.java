@@ -33,6 +33,7 @@ public class Tile {
         this.tileNum = orig.tileNum;
     }
 
+    //Getters and Setters
     public int getColor() {
         return color;
     }
