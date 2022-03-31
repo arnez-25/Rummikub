@@ -13,8 +13,7 @@ import edu.up.cs301.game.actionMsg.GameAction;
 
 /**
  * @authors Jacob Arnez, Maja Elliott, Dylan Kim, Chase Ohmstede
- * @version 3/23/2022
- *
+ * @version 3/30/2022
  *
  *
  * Bugs:

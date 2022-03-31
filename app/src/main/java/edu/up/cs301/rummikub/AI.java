@@ -30,8 +30,16 @@ public class AI extends GameComputerPlayer {
             return;
         }
         if (playerNum == recieved_State.getCurr_turn()){
-            DrawTile draw = new DrawTile(this);
-            game.sendAction(draw);
+            //if there are tiles in the pile it will continue to draw
+            //else it will place tiles
+            if (){
+                DrawTile draw = new DrawTile(this);
+                game.sendAction(draw);
+            }
+            else{
+                PlaceTile place = new PlaceTile(this);
+                game.sendAction(place);
+            }
         }
     }
     //Needs to be able to tell which AI is which
