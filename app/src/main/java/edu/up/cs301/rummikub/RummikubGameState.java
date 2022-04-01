@@ -5,6 +5,7 @@ import android.graphics.Color;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 
 import edu.up.cs301.game.infoMsg.GameState;
 
@@ -53,17 +54,49 @@ public class RummikubGameState extends GameState {
     public RummikubGameState() {
         playerId = 0;
         timer = 100;
+        //Setting up the begginning of the game the default constructor should only be called once
+        setup(player_hand, deck);
 
     }
+    /*
+          External Citation
+          Date: 31 March 2022
+          Problem: Creating deep copy of ArrayList
+          Resource:
+          https://codippa.com/deep-copy-arraylist-java/
+          Solution: I needed to implement Cloneable interface to Tile then iterate over the List and clone them into the copy
+          I don't understand why the try-catch is necessary, but no red squiggly make me happy
+         */
     //Copy Constructor I don't know if it's deep copy since the ArrayList aren't fully instantiated
     public RummikubGameState(RummikubGameState copy){
         this.playerId = copy.getPlayerId();
         this.timer = copy.getTimer();
-        this.player1_hand = copy.getPlayer2_hand();
-        this.player2_hand = copy.getPlayer2_hand();
-        this.deck = copy.getDeck();
-        this.player_hand = copy.player_hand;
+        //Setting the 2D array for the copy and making them a deep copy
+        this.player_hand.add(new ArrayList<Tile>());
+        for(int i = 0; i < copy.getPlayerHand().size(); i++){                       //This section could probably be turned into a helper method
+            try {
+                this.player_hand.get(0).add((Tile) copy.getPlayerHand().get(0).get(i).clone());         // I don't understand why the try-catch is necessary
+            }catch  (CloneNotSupportedException e3) {
+                e3.printStackTrace();
+            }
+        }
+        this.player_hand.add(new ArrayList<Tile>());
+        for(int j = 0; j < copy.getPlayerHand().size(); j++){
+            try {
+                this.player_hand.get(1).add((Tile) copy.getPlayerHand().get(1).get(j).clone());
+            }catch  (CloneNotSupportedException e3) {
+                e3.printStackTrace();
+            }
+        }
 
+        for(int f = 0; f < copy.getDeck().size(); f++){
+            try{
+                this.deck.add((Tile) copy.getDeck().get(f).clone());
+
+            }catch  (CloneNotSupportedException e3) {
+                e3.printStackTrace();
+            }
+        }
     }
 
     @Override
@@ -93,13 +126,13 @@ public class RummikubGameState extends GameState {
                 + "Currently Player " + playerId + "'s Turn    \n"
                 + "Timer: " + timer + "s                        \n\n"
                 + "Player 1 Hand:                               \n"
-                + str_player1_hand + "                          \n\n"
+                + player_hand.get(0).toString() + "                          \n\n"
                 + "Player 2 Hand:                               \n"
-                + str_player2_hand + "                          \n\n"
+                + player_hand.get(1).toString() + "                          \n\n"
                 + "Tiles on Board:                              \n"
-                + str_board + "                               \n\n"
+                + board.toString() + "                               \n\n"
                 + "Tiles in Pile:                               \n"
-                + str_deck;
+                + deck.toString();
 
         return str_return;
 
@@ -129,13 +162,13 @@ public class RummikubGameState extends GameState {
     public boolean drawTile_action(ArrayList<Tile> deck){
         if (playerId == 0){
             //Add tile from tile pile to player_1's hand
-            drawTile(player1_hand, deck);
+            drawTile(player_hand.get(0), deck);
             changeTurn();
             return true;
 
         } else if(playerId == 1){
             //Add tile from tile pile to player_2's hand
-            drawTile(player2_hand, deck);
+            drawTile(player_hand.get(1), deck);
             changeTurn();
             return true;
 
@@ -198,6 +231,7 @@ public class RummikubGameState extends GameState {
         //If neither player hand is empty then the game continues
         return false;
     }
+
 
     //Getters and Setters
     public int getPlayerId() {

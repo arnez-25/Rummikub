@@ -11,7 +11,7 @@ import android.graphics.Color;
  *
  * */
 
-public class Tile {
+public class Tile implements Cloneable{
     private int color;
     private int tileNum;
 
@@ -31,6 +31,12 @@ public class Tile {
     public Tile(Tile orig) {
         this.color = orig.color;
         this.tileNum = orig.tileNum;
+    }
+
+    //Method from implementation to allow for deepcopy
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 
     //Getters and Setters
