@@ -2,6 +2,7 @@ package edu.up.cs301.rummikub;
 
 import android.graphics.Canvas;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 import android.view.View;
@@ -117,15 +118,17 @@ public class RummiHumanPlayer extends GameHumanPlayer implements View.OnTouchLis
             System.exit(0);
         }
 
-        else if (button.getId() == R.id.button_draw){
+        if (button.getId() == R.id.button_draw){
             game.sendAction(new DrawTile(this));
         }
 
-        else if (button.getId() == R.id.button_undo) {
+        /*
+        if (button.getId() == R.id.button_undo) {
             //game.sendAction(new Undo(this)); (saving undo for beta testing)
         }
+        */
 
-        else if (button.getId() == R.id.button_done) {
+        if (button.getId() == R.id.button_done) {
             game.sendAction(new EndTurn(this));
         }
 
@@ -171,6 +174,8 @@ public class RummiHumanPlayer extends GameHumanPlayer implements View.OnTouchLis
     public boolean onTouch(View view, MotionEvent motionEvent) {
        int x = (int) motionEvent.getX();
        int y = (int) motionEvent.getY();
+       Log.i("OnTouch", "X Coord: " + x);
+       Log.i("OnTouch", "Y Coord: " + y);
 
        // hitboxes for tiles (board)
        for (int i = 0; i < myView.getWidth_grid(); i += myView.getWidth_tile()) {
@@ -182,6 +187,7 @@ public class RummiHumanPlayer extends GameHumanPlayer implements View.OnTouchLis
 
                         setBox_x((i / myView.getWidth_tile()));
                         setBox_y((j / myView.getHeight_tile()));
+                        Log.i("OnTouch", "On touch tracking is working");
                         setHasTouched(true);
                }
                else setHasTouched(false);

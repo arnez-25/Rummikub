@@ -67,6 +67,7 @@ public class RummikubGameState extends GameState {
           Solution: I needed to implement Cloneable interface to Tile then iterate over the List and clone them into the copy
           I don't understand why the try-catch is necessary, but no red squiggly make me happy
          */
+
     //Copy Constructor I don't know if it's deep copy since the ArrayList aren't fully instantiated
     public RummikubGameState(RummikubGameState copy){
         this.playerId = copy.getPlayerId();
