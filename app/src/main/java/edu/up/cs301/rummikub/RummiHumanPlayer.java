@@ -188,7 +188,10 @@ public class RummiHumanPlayer extends GameHumanPlayer implements View.OnTouchLis
            }
        }
 
-       //if (x == getBox_x() && y == getBox_y() && view.)
+       //Checking paint color
+       if (x == getBox_x() && y == getBox_y() && myView.getTilePaint() == myView.boardPaint_invis){
+           myView.setTilePaint(myView.tilePaint);
+       }
 
        return false;
 

@@ -212,7 +212,7 @@ public class RummiView extends SurfaceView {
                 pos_x2 = (getWidth_tile() * (i + 1))    + 60;
                 pos_y2 = (getHeight_tile() * (j + 1))   + height_tray + 10;
 
-                c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, trayPaint_invis);
+                c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, getTilePaint());
                 this.invalidate();
             }
         }
