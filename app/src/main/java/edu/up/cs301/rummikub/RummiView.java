@@ -78,6 +78,14 @@ public class RummiView extends SurfaceView {
         trayPaint.setColor(trayColor);
         trayPaint.setStyle(Paint.Style.FILL);
 
+        //initializing the tiles
+        for (int i = 0; i < 4; i++){
+            for (int j = 0; j < 13; j++){
+                info.setColor(j);
+                info.setTileNum(i);
+            }
+        }
+
     }
 
     @Override

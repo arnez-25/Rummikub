@@ -20,7 +20,8 @@ import edu.up.cs301.game.infoMsg.GameInfo;
  *
  * (insert description)
  *
- * Bugs:
+ * Bugs: We don't have a SendAction in the rummikub gamestate
+ * Bugs: We don't have a SendAction in the rummikub gamestate
  *
  * */
 
@@ -110,7 +111,7 @@ public class RummiHumanPlayer extends GameHumanPlayer implements View.OnTouchLis
             System.exit(0);
         }
 
-        else if (button.getId() == R.id.button_draw) {
+        else if (button.getId() == R.id.button_draw){
             game.sendAction(new DrawTile(this));
         }
 
