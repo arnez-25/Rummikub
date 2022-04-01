@@ -100,7 +100,7 @@ public class RummiView extends SurfaceView {
         createGrid(c);
         //createTile(c);
         createTray(c);
-        createTile(c);
+        //createTile(c);
         //this.invalidate();
     }
 
@@ -264,6 +264,14 @@ public class RummiView extends SurfaceView {
 
     public void setHeight_tray(float height_tray) {
         this.height_tray = height_tray;
+    }
+
+    public Paint getTilePaint() {
+        return tilePaint;
+    }
+
+    public void setTilePaint(Paint tilePaint) {
+        this.tilePaint = tilePaint;
     }
 
     public RummikubGameState getGameState() { return newState; }
