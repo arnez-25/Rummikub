@@ -22,6 +22,7 @@ public class RummiView extends SurfaceView {
     //setting up paints and DrawTileData reference
 
     public RummikubGameState newState;
+    public RummiHumanPlayer myPlayer;
     public Tile info;
 
     private static final int tileColor          = Color.parseColor("#FAD3BB");
@@ -42,8 +43,14 @@ public class RummiView extends SurfaceView {
     Paint tilePaint_red         = new Paint();
     Paint tilePaint_orange      = new Paint();
 
-    private float height_tile;
     private float width_tile;
+    private float height_tile;
+
+    private float width_grid;
+    private float height_grid;
+
+    private float width_tray;
+    private float height_tray;
 
     public RummiView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -96,9 +103,12 @@ public class RummiView extends SurfaceView {
     }
 
     public void createTile(Canvas c){
+
+        float box_x = myPlayer.getBox_x();
+        float box_y = myPlayer.getBox_y();
+
         //Draws the tile (temp values change later)
-        c.drawRect(5, 5, 115, 217, tilePaint);
-        c.drawText("" + info.getTileNum(), 10, 20, tilePaint_black);
+        c.drawRect(box_x + 10, box_y + 10, box_x + getWidth_tile() - 10, box_y + getHeight_tile() - 10, tilePaint);
     }
 
     public void createGrid(Canvas c){
@@ -112,8 +122,8 @@ public class RummiView extends SurfaceView {
           Solution: Apparently all I needed to do was use the drawLine feature that's part of the Canvas import
          */
 
-        float height_grid = ((float) getHeight() / 3) * 2;
-        float width_grid = getWidth();
+        setHeight_grid(((float) getHeight() / 3) * 2);
+        setWidth_grid(getWidth());
 
         // vertical lines
 
@@ -172,8 +182,8 @@ public class RummiView extends SurfaceView {
     /* in charge of drawing the player's hand tray for the .xml */
     public void createTray(Canvas c) {
 
-        float height_tray = (((float) getHeight() / 3) * 2) + 20;
-        float width_tray = getWidth() - 20;
+        setWidth_tray(getWidth() - 20);
+        setHeight_tray((((float) getHeight() / 3) * 2) + 20);
 
         c.drawRect(20, height_tray, width_tray, height_tray + height_tray, trayPaint_invis);
 
@@ -216,6 +226,38 @@ public class RummiView extends SurfaceView {
 
     public void setWidth_tile(float width_tile) {
         this.width_tile = width_tile;
+    }
+
+    public float getWidth_grid() {
+        return width_grid;
+    }
+
+    public void setWidth_grid(float width_grid) {
+        this.width_grid = width_grid;
+    }
+
+    public float getHeight_grid() {
+        return height_grid;
+    }
+
+    public void setHeight_grid(float height_grid) {
+        this.height_grid = height_grid;
+    }
+
+    public float getWidth_tray() {
+        return width_tray;
+    }
+
+    public void setWidth_tray(float width_tray) {
+        this.width_tray = width_tray;
+    }
+
+    public float getHeight_tray() {
+        return height_tray;
+    }
+
+    public void setHeight_tray(float height_tray) {
+        this.height_tray = height_tray;
     }
 
     public RummikubGameState getGameState() { return newState; }

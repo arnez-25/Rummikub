@@ -1,5 +1,6 @@
 package edu.up.cs301.rummikub;
 
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
@@ -40,6 +41,10 @@ public class RummiHumanPlayer extends GameHumanPlayer implements View.OnTouchLis
     /* this is the android activity we're running */
     private GameMainActivity myActivity;
     private RummikubGameState pState;
+    private RummiView myView;
+
+    private float box_x;
+    private float box_y;
 
     /**
      * constructor does nothing extra
@@ -165,19 +170,38 @@ public class RummiHumanPlayer extends GameHumanPlayer implements View.OnTouchLis
     public boolean onTouch(View view, MotionEvent motionEvent) {
        int x = (int) motionEvent.getX();
        int y = (int) motionEvent.getY();
-       int box_x = 0;
-       int box_y = 0;
 
-       //Hitboxes for tiles
-       for (int i = 0; i < ((float) view.getHeight() / 3) * 2; i += (view.getWidth()/4)) {
-           for (int j = 0; j < view.getWidth(); j += (view.getWidth()/13)) {
-               if (x < i && x >= i + (view.getWidth()/4) && y < j && y >= j + (view.getWidth()/13)) {
-                   box_x = i / (view.getWidth()/4);
-                   box_y = j / (view.getWidth()/13);
+       // hitboxes for tiles (board)
+       for (int i = 0; i < myView.getWidth_grid(); i += myView.getWidth_tile()) {
+
+           for (int j = 0; j < myView.getHeight_grid(); j += myView.getHeight_tile()) {
+
+               if (((x > i) && (x <= (i + myView.getWidth_tile())))
+                    && ((y > j) && (y <= (j + myView.getHeight_tile())))) {
+
+                        setBox_x((i / myView.getWidth_tile()));
+                        setBox_y((j / myView.getHeight_tile()));
                }
            }
        }
 
        return false;
+
+    }
+
+    public float getBox_x() {
+        return box_x;
+    }
+
+    public void setBox_x(float box_x) {
+        this.box_x = box_x;
+    }
+
+    public float getBox_y() {
+        return box_y;
+    }
+
+    public void setBox_y(float box_y) {
+        this.box_y = box_y;
     }
 }
