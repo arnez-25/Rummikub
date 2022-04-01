@@ -15,7 +15,9 @@ import edu.up.cs301.game.actionMsg.GameAction;
 
 public class PlaceTile extends GameAction {
 
-    public PlaceTile(GamePlayer player){ super(player); }
+    public PlaceTile(GamePlayer player){
+        super(player);
+    }
 
     /**
      * Checks to do:

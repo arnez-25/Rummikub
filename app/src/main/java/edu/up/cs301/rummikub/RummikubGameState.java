@@ -2,6 +2,7 @@ package edu.up.cs301.rummikub;
 
 import android.graphics.Color;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -43,7 +44,7 @@ public class RummikubGameState extends GameState {
     private ArrayList<ArrayList<Tile>> player_hand = new ArrayList<>();
 
     //This is the list of tiles currently on the board
-    private ArrayList<Tile> board = new ArrayList<Tile>();
+    private Array board = new Array();
 
     //This is the pile of tiles the players are gonna draw from
     private ArrayList<Tile> deck = new ArrayList<Tile>();
