@@ -188,7 +188,7 @@ public class RummiHumanPlayer extends GameHumanPlayer implements View.OnTouchLis
            }
        }
 
-       if (x == getBox_x() && y == getBox_y() && view.)
+       //if (x == getBox_x() && y == getBox_y() && view.)
 
        return false;
 

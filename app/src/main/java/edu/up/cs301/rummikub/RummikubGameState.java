@@ -44,7 +44,7 @@ public class RummikubGameState extends GameState {
     private ArrayList<ArrayList<Tile>> player_hand = new ArrayList<>();
 
     //This is the list of tiles currently on the board
-    private Array board = new Array();
+    private ArrayList<Tile> board = new ArrayList<Tile>();
 
     //This is the pile of tiles the players are gonna draw from
     private ArrayList<Tile> deck = new ArrayList<Tile>();
