@@ -25,7 +25,7 @@ public class RummiView extends SurfaceView {
     public Tile info;
 
     private static final int tileColor        = Color.parseColor("#FAD3BB");
-    private static final int tileColor_invis  = Color.parseColor("#FAD3BB");
+    private static final int tileColor_invis  = Color.parseColor("#2C3493");
     private static final int tileColor_black  = Color.parseColor("#000000");
     private static final int tileColor_blue   = Color.parseColor("#29ABE2");
     private static final int tileColor_red    = Color.parseColor("#ED1C24");
@@ -55,9 +55,9 @@ public class RummiView extends SurfaceView {
         tilePaint.setColor(tileColor);
         tilePaint.setStyle(Paint.Style.FILL);
 
-        // to turn tile color invisible, set style to STROKE instead of FILL
+        // to turn tile color invisible, the color value will be the same as the background B)
         tilePaint_invis.setColor(tileColor_invis);
-        tilePaint.setStyle(Paint.Style.STROKE);
+        tilePaint.setStyle(Paint.Style.FILL);
 
         tilePaint_black.setColor(tileColor_black);
         tilePaint.setStyle(Paint.Style.FILL);
@@ -141,9 +141,11 @@ public class RummiView extends SurfaceView {
 
             for (int j = 0; j < rowCount; j++) {
 
-                float pos_x = (width_grid  / colCount) * (i);
-                float pos_y = (height_grid / rowCount) * (j);
-                c.drawRect(pos_x + 5, pos_y + 5, pos_x + 115, pos_y + 140, tilePaint);
+                float pos_x1 = (width_grid  / colCount) * (i);
+                float pos_y1 = (height_grid / rowCount) * (j);
+                float pos_x2 = (width_grid  / colCount) * (i + 1);
+                float pos_y2 = (height_grid / rowCount) * (j + 1);
+                c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, tilePaint_invis);
             }
         }
     }
@@ -153,7 +155,7 @@ public class RummiView extends SurfaceView {
 
         float height_tray = (((float) getHeight() / 3) * 2) + 40;
         float width_tray = getWidth() - 40;
-        c.drawRect(40, height_tray, width_tray, height_tray + 225, trayPaint);
+        c.drawRect(40, height_tray, width_tray, height_tray + 285, trayPaint);
 
     }
 
