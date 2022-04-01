@@ -43,8 +43,9 @@ public class RummiHumanPlayer extends GameHumanPlayer implements View.OnTouchLis
     private RummikubGameState pState;
     private RummiView myView;
 
-    private float box_x;
-    private float box_y;
+    private float box_x = 0;
+    private float box_y = 0;
+    private boolean hasTouched = false;
 
     /**
      * constructor does nothing extra
@@ -181,7 +182,9 @@ public class RummiHumanPlayer extends GameHumanPlayer implements View.OnTouchLis
 
                         setBox_x((i / myView.getWidth_tile()));
                         setBox_y((j / myView.getHeight_tile()));
+                        setHasTouched(true);
                }
+               else setHasTouched(false);
            }
        }
 
@@ -205,5 +208,13 @@ public class RummiHumanPlayer extends GameHumanPlayer implements View.OnTouchLis
 
     public void setBox_y(float box_y) {
         this.box_y = box_y;
+    }
+
+    public boolean hasTouched() {
+        return hasTouched;
+    }
+
+    public void setHasTouched(boolean hasTouched) {
+        this.hasTouched = hasTouched;
     }
 }

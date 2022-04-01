@@ -100,6 +100,8 @@ public class RummiView extends SurfaceView {
         createGrid(c);
         //createTile(c);
         createTray(c);
+        createTile(c);
+        //this.invalidate();
     }
 
     public void createTile(Canvas c){
@@ -132,6 +134,7 @@ public class RummiView extends SurfaceView {
         {
             float pos = (width_grid / colCount) * (i);
             c.drawLine(pos, 0, pos, height_grid, gridPaint);
+            this.invalidate();
         }
 
         // horizontal lines
@@ -142,6 +145,7 @@ public class RummiView extends SurfaceView {
         {
             float pos = (height_grid / rowCount) * (i);
             c.drawLine(0, pos, width_grid, pos, gridPaint);
+            this.invalidate();
         }
 
         /**
@@ -175,6 +179,7 @@ public class RummiView extends SurfaceView {
                     setHeight_tile(pos_y2);
                 }
 
+                this.invalidate();
             }
         }
     }
@@ -208,6 +213,7 @@ public class RummiView extends SurfaceView {
                 pos_y2 = (getHeight_tile() * (j + 1))   + height_tray + 10;
 
                 c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, trayPaint_invis);
+                this.invalidate();
             }
         }
     }
