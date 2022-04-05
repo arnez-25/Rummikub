@@ -77,15 +77,19 @@ public class RummiView extends SurfaceView {
 
         tilePaint_black.setColor(tileColor_black);
         tilePaint_black.setStyle(Paint.Style.FILL);
+        tilePaint_black.setTextSize(60);
 
         tilePaint_blue.setColor(tileColor_blue);
         tilePaint_blue.setStyle(Paint.Style.FILL);
+        tilePaint_blue.setTextSize(60);
 
         tilePaint_red.setColor(tileColor_red);
         tilePaint_red.setStyle(Paint.Style.FILL);
+        tilePaint_red.setTextSize(60);
 
         tilePaint_orange.setColor(tileColor_orange);
         tilePaint_orange.setStyle(Paint.Style.FILL);
+        tilePaint_orange.setTextSize(60);
 
         //initializing the tiles
         for (int i = 0; i < 4; i++){
@@ -104,6 +108,7 @@ public class RummiView extends SurfaceView {
         createTray(c);
         //createTile(c);
         //this.invalidate();
+        createTileText(c);
     }
 
     public void createTile(Canvas c){
@@ -222,8 +227,11 @@ public class RummiView extends SurfaceView {
 
     public void createTileText(Canvas c) {
 
-        float text_x = myPlayer.getBox_x();
-        float text_y = myPlayer.getBox_y();
+        //float text_x = myPlayer.getBox_x();
+        //float text_y = myPlayer.getBox_y();
+
+        float text_x = 65;
+        float text_y = 130;
 
         /**
          * black: 0
@@ -232,6 +240,7 @@ public class RummiView extends SurfaceView {
          * red: 3
          */
 
+        /*
         switch (info.getColor()) {
             case 0:
                 c.drawText("" + info.getTileNum(), text_x, text_y, tilePaint_black);
@@ -247,8 +256,15 @@ public class RummiView extends SurfaceView {
                 break;
             default:
                 break;
-
         }
+         */
+
+        //testing draws
+        c.drawText("1", text_x, text_y, tilePaint_black);
+        c.drawText("2", text_x + (getWidth_tile()), text_y, tilePaint_blue);
+        c.drawText("3", text_x + (getWidth_tile() * 2), text_y, tilePaint_orange);
+        c.drawText("4", text_x + (getWidth_tile() * 3), text_y, tilePaint_red);
+
     }
 
     public float getHeight_tile() {
