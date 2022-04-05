@@ -29,6 +29,7 @@ public class RummiView extends SurfaceView {
     private static final int boardColor_invis   = Color.parseColor("#2C3493");
     private static final int trayColor_invis    = Color.parseColor("#AE9276");
     private static final int gridColor          = Color.parseColor("#FFFFFF");
+
     private static final int tileColor_black    = Color.parseColor("#000000");
     private static final int tileColor_blue     = Color.parseColor("#29ABE2");
     private static final int tileColor_red      = Color.parseColor("#ED1C24");
@@ -38,6 +39,7 @@ public class RummiView extends SurfaceView {
     Paint boardPaint_invis      = new Paint();
     Paint trayPaint_invis       = new Paint();
     Paint gridPaint             = new Paint();
+
     Paint tilePaint_black       = new Paint();
     Paint tilePaint_blue        = new Paint();
     Paint tilePaint_red         = new Paint();
@@ -215,6 +217,37 @@ public class RummiView extends SurfaceView {
                 c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, getTilePaint());
                 this.invalidate();
             }
+        }
+    }
+
+    public void createTileText(Canvas c) {
+
+        float text_x = myPlayer.getBox_x();
+        float text_y = myPlayer.getBox_y();
+
+        /**
+         * black: 0
+         * blue: 1
+         * orange: 2
+         * red: 3
+         */
+
+        switch (info.getColor()) {
+            case 0:
+                c.drawText("" + info.getTileNum(), text_x, text_y, tilePaint_black);
+                break;
+            case 1:
+                c.drawText("" + info.getTileNum(), text_x, text_y, tilePaint_blue);
+                break;
+            case 2:
+                c.drawText("" + info.getTileNum(), text_x, text_y, tilePaint_orange);
+                break;
+            case 3:
+                c.drawText("" + info.getTileNum(), text_x, text_y, tilePaint_red);
+                break;
+            default:
+                break;
+
         }
     }
 
