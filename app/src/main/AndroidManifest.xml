@@ -11,7 +11,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         
-        <activity android:name="edu.up.cs301.rummikub.RummikubMainActivity"
+        <activity android:name="edu.up.cs301.rummikub.RummiMainActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

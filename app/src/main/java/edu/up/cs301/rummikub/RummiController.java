@@ -17,7 +17,7 @@ import android.widget.CompoundButton;
 public class RummiController implements View.OnClickListener, CompoundButton.OnCheckedChangeListener, View.OnTouchListener{
     //Initializing RummiView and Gamestate objects
     private final RummiView rView;
-    private RummikubGameState game;
+    private RummiGameState game;
 
     //Constructor
     public RummiController(RummiView view){

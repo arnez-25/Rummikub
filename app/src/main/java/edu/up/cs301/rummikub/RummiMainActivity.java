@@ -7,11 +7,8 @@ import edu.up.cs301.game.GamePlayer;
 import edu.up.cs301.game.LocalGame;
 import edu.up.cs301.game.config.GameConfig;
 import edu.up.cs301.game.config.GamePlayerType;
-import edu.up.cs301.pig.PigComputerPlayer;
-import edu.up.cs301.pig.PigHumanPlayer;
-import edu.up.cs301.pig.PigLocalGame;
 
-public class RummikubMainActivity extends GameMainActivity {
+public class RummiMainActivity extends GameMainActivity {
 
     // the port number that this game will use when playing over the network
     private static final int PORT_NUMBER = 33479;
@@ -58,7 +55,7 @@ public class RummikubMainActivity extends GameMainActivity {
      */
     @Override
     public LocalGame createLocalGame() {
-        return new RummikubLocalGame();
+        return new RummiLocalGame();
     }
 
 }

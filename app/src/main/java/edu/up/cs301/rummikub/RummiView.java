@@ -21,7 +21,7 @@ import android.view.SurfaceView;
 public class RummiView extends SurfaceView {
     //setting up paints and DrawTileData reference
 
-    public RummikubGameState newState;
+    public RummiGameState newState;
     public RummiHumanPlayer myPlayer;
     public Tile info;
 
@@ -307,5 +307,5 @@ public class RummiView extends SurfaceView {
         this.tilePaint = tilePaint;
     }
 
-    public RummikubGameState getGameState() { return newState; }
+    public RummiGameState getGameState() { return newState; }
 }

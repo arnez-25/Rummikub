@@ -1,11 +1,7 @@
 package edu.up.cs301.rummikub;
 
-import android.graphics.Color;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 
 import edu.up.cs301.game.infoMsg.GameState;
 
@@ -19,7 +15,7 @@ import edu.up.cs301.game.infoMsg.GameState;
  *
  * */
 
-public class RummikubGameState extends GameState {
+public class RummiGameState extends GameState {
 
     /**
      * Instance Variables REQ. for Rummikub:
@@ -51,7 +47,7 @@ public class RummikubGameState extends GameState {
     private ArrayList<Tile> deck = new ArrayList<Tile>();
 
 
-    public RummikubGameState() {
+    public RummiGameState() {
         playerId = 0;
         timer = 100;
         //Setting up the begginning of the game the default constructor should only be called once
@@ -69,7 +65,7 @@ public class RummikubGameState extends GameState {
          */
 
     //Copy Constructor I don't know if it's deep copy since the ArrayList aren't fully instantiated
-    public RummikubGameState(RummikubGameState copy){
+    public RummiGameState(RummiGameState copy){
         this.playerId = copy.getPlayerId();
         this.timer = copy.getTimer();
         //Setting the 2D array for the copy and making them a deep copy
