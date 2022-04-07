@@ -22,18 +22,13 @@ public class Tile implements Cloneable{
             if (0 != init_tileNum) {
                 throw new IllegalArgumentException();
             }
+
         } else if (0 == init_tileNum) {
             throw new IllegalArgumentException();
         }
 
         this.tileColor = init_tileColor;
         this.tileNum = init_tileNum;
-    }
-
-    //Tile constructor
-    public Tile(){
-        this.tileColor = Color.BLACK;
-        this.tileNum = 1;
     }
 
     //Copy constructor for Tile

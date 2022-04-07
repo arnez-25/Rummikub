@@ -23,7 +23,7 @@ public class RummiView extends SurfaceView {
 
     public RummiGameState newState;
     public RummiHumanPlayer myPlayer;
-    public Tile info;
+    //public Tile info; might wanna get rid of?????
 
     private static final int tileColor          = Color.parseColor("#F9E2D0");
     private static final int tileColor2         = Color.parseColor("#E2cfb5");
@@ -59,7 +59,6 @@ public class RummiView extends SurfaceView {
     public RummiView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        info = new Tile();
         setWillNotDraw(false);
 
         // initialize colors
@@ -96,13 +95,6 @@ public class RummiView extends SurfaceView {
         tilePaint_orange.setStyle(Paint.Style.FILL);
         tilePaint_orange.setTextSize(60);
 
-        //initializing the tiles
-        for (int i = 0; i < 4; i++){
-            for (int j = 0; j < 13; j++){
-                info.setColor(j);
-                info.setTileNum(i);
-            }
-        }
     }
 
     @Override

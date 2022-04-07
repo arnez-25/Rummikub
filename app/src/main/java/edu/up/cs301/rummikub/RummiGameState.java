@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import edu.up.cs301.game.infoMsg.GameState;
+import edu.up.cs301.rummikub.RummiView;
 
 /**
  * @authors Jacob Arnez, Maja Elliott, Dylan Kim, Chase Ohmstede
@@ -70,6 +71,7 @@ public class RummiGameState extends GameState {
         this.timer = copy.getTimer();
         //Setting the 2D array for the copy and making them a deep copy
         this.player_hand.add(new ArrayList<Tile>());
+
         for(int i = 0; i < copy.getPlayerHand().size(); i++){                       //This section could probably be turned into a helper method
             try {
                 this.player_hand.get(0).add((Tile) copy.getPlayerHand().get(0).get(i).clone());         // I don't understand why the try-catch is necessary
@@ -180,6 +182,7 @@ public class RummiGameState extends GameState {
         for(int i = 1; i <= 2; i++){
             //This should create tiles from 1 - 12 for each color
             for(int j = 1; j <= 13; j++){
+
                 deck.add(new Tile(1, j));
                 deck.add(new Tile(2, j));
                 deck.add(new Tile(3, j));
