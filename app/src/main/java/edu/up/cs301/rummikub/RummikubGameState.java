@@ -1,11 +1,13 @@
 package edu.up.cs301.rummikub;
 
 import android.graphics.Color;
+import android.util.Log;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.logging.*;
 
 import edu.up.cs301.game.infoMsg.GameState;
 
@@ -36,90 +38,72 @@ public class RummikubGameState extends GameState {
 
     private int playerId;
     private int timer;
-
-    //These are the player hands
-    private ArrayList<Tile> player1_hand = new ArrayList<>();
-    private ArrayList<Tile> player2_hand = new ArrayList<>();
-
-    //2-D Array for both player hands and player tile
-    private ArrayList<ArrayList<Tile>> player_hand = new ArrayList<>();
-
-    //This is the list of tiles currently on the board
-    private ArrayList<Tile> board = new ArrayList<Tile>();
-
-    //This is the pile of tiles the players are gonna draw from
-    private ArrayList<Tile> deck = new ArrayList<Tile>();
+    private ArrayList<ArrayList<Tile>> player_hand = new ArrayList<>();     //2-D Array for both player hands and player tile
+    private ArrayList<Tile> board = new ArrayList<Tile>();  //This is the list of tiles currently on the board
+    private ArrayList<Tile> deck = new ArrayList<Tile>();   //This is the pile of tiles the players are gonna draw from
 
 
+    /**
+     * Inital Constructor
+     *
+     * Should only be called once at the beginning of the game
+     */
     public RummikubGameState() {
         playerId = 0;
         timer = 100;
-        //Setting up the begginning of the game the default constructor should only be called once
+        //Setting up the beginning of the game the default constructor should only be called once
         setup(player_hand, deck);
 
     }
-    /*
-          External Citation
-          Date: 31 March 2022
-          Problem: Creating deep copy of ArrayList
-          Resource:
-          https://codippa.com/deep-copy-arraylist-java/
-          Solution: I needed to implement Cloneable interface to Tile then iterate over the List and clone them into the copy
-          I don't understand why the try-catch is necessary, but no red squiggly make me happy
-         */
 
-    //Copy Constructor I don't know if it's deep copy since the ArrayList aren't fully instantiated
+
+    /**
+     * Master Copy constructor
+     *
+     * This is not meant for the players
+     *
+     * @param copy
+     */
     public RummikubGameState(RummikubGameState copy){
         this.playerId = copy.getPlayerId();
         this.timer = copy.getTimer();
         //Setting the 2D array for the copy and making them a deep copy
         this.player_hand.add(new ArrayList<Tile>());
-        for(int i = 0; i < copy.getPlayerHand().size(); i++){                       //This section could probably be turned into a helper method
-            try {
-                this.player_hand.get(0).add((Tile) copy.getPlayerHand().get(0).get(i).clone());         // I don't understand why the try-catch is necessary
-            }catch  (CloneNotSupportedException e3) {
-                e3.printStackTrace();
-            }
-        }
+        deep_copy(this.player_hand.get(0), copy.getPlayerHand().get(0));
         this.player_hand.add(new ArrayList<Tile>());
-        for(int j = 0; j < copy.getPlayerHand().size(); j++){
-            try {
-                this.player_hand.get(1).add((Tile) copy.getPlayerHand().get(1).get(j).clone());
-            }catch  (CloneNotSupportedException e3) {
-                e3.printStackTrace();
-            }
+        deep_copy(this.player_hand.get(1), copy.getPlayerHand().get(1));
+        deep_copy(this.deck, copy.getDeck());
+    }
+
+    /**
+     * Copy constructor
+     *
+     * meant for players
+     *
+     * @param copy - The Gamestate being copied
+     * @param PlayerId - an int meant to help nullify the deck the player shouldnt see
+     */
+    public RummikubGameState(RummikubGameState copy, int PlayerId){
+        this.playerId = copy.getPlayerId();
+        this.timer = copy.getTimer();
+        //Setting the 2D array for the copy and making them a deep copy
+        this.player_hand.add(new ArrayList<Tile>());
+        deep_copy(this.player_hand.get(0), copy.getPlayerHand().get(0));
+        this.player_hand.add(new ArrayList<Tile>());
+        deep_copy(this.player_hand.get(1), copy.getPlayerHand().get(1));
+        deep_copy(this.deck, copy.getDeck());
+        if(PlayerId == 0){
+            this.player_hand.get(1).clear();        // The clear method should just erase all the objects in the list and set it to null
+        }
+        else if(PlayerId == 1){
+            this.player_hand.get(0).clear();
         }
 
-        for(int f = 0; f < copy.getDeck().size(); f++){
-            try{
-                this.deck.add((Tile) copy.getDeck().get(f).clone());
 
-            }catch  (CloneNotSupportedException e3) {
-                e3.printStackTrace();
-            }
-        }
     }
 
     @Override
     public String toString() {
-
-        String str_player1_hand = "", str_player2_hand = "", str_board = "", str_deck = "";
-
-        for (int i = 0; i < player1_hand.size(); i++) {
-            str_player1_hand += player1_hand.get(i) + "\n";
-        }
-
-        for (int i = 0; i < player2_hand.size(); i++) {
-            str_player2_hand += player2_hand.get(i) + "\n";
-        }
-
-        for (int i = 0; i < board.size(); i++) {
-            str_board += board.get(i) + "\n";
-        }
-
-        for (int i = 0; i < deck.size(); i++) {
-            str_deck += deck.get(i) + "\n";
-        }
 
         String str_return
 
@@ -154,6 +138,7 @@ public class RummikubGameState extends GameState {
     }
 
     //Helper method for adding tiles to player hand(s)
+    //WARNING: this will only add too player 0s hand
     private void drawTile(ArrayList<Tile> player_hand, ArrayList<Tile> deck) {
         player_hand.add(deck.get(0));
         deck.remove(0);
@@ -196,8 +181,8 @@ public class RummikubGameState extends GameState {
     //Helper method for adding tiles to player hand(s) at the start of the game
     private void mulligan(ArrayList<Tile> deck) {
         for(int i = 0; i < 7; i++) {
-            drawTile(player1_hand, deck);
-            drawTile(player2_hand, deck);
+            drawTile(player_hand.get(0), deck);
+            drawTile(player_hand.get(1), deck);
         }
     }
 
@@ -221,17 +206,42 @@ public class RummikubGameState extends GameState {
 
     //Checks if either player hand is empty. This should be called at the end of each turn
     public boolean isWin(){
-        if(player1_hand.isEmpty()){
+        if(player_hand.get(0).isEmpty()){
             //The print line is just a placeholder, the method should change the screen to reflect who's won the game
             System.out.println("Player 1 has won the game!");
             return true;
         }
-        if(player2_hand.isEmpty()){
+        if(player_hand.get(1).isEmpty()){
             System.out.println("Player 2 has won the game");
         }
         //If neither player hand is empty then the game continues
         return false;
     }
+
+    /**
+     * Helper Method for making a deep copy for the copy constructor
+     *
+     * Unsure weather it works or not but it compiles ¯\_(ツ)_/¯
+     */
+    public void deep_copy(ArrayList<Tile> copy, ArrayList<Tile> reference){
+        for(int i = 0; i < reference.size(); i++){                       //This section could probably be turned into a helper method
+            try {
+                copy.add((Tile) reference.get(i).clone());         // I don't understand why the try-catch is necessary
+            }catch  (CloneNotSupportedException e3) {
+                e3.printStackTrace();
+            }
+        }
+         /*
+          External Citation
+          Date: 31 March 2022
+          Problem: Creating deep copy of ArrayList
+          Resource:
+          https://codippa.com/deep-copy-arraylist-java/
+          Solution: I needed to implement Cloneable interface to Tile then iterate over the List and clone them into the copy
+          I don't understand why the try-catch is necessary, but no red squiggly make me happy
+         */
+    }
+
 
 
     //Getters and Setters
@@ -249,22 +259,6 @@ public class RummikubGameState extends GameState {
 
     public void setTimer(int timer) {
         this.timer = timer;
-    }
-
-    public ArrayList<Tile> getPlayer1_hand() {
-        return player1_hand;
-    }
-
-    public void setPlayer1_hand(ArrayList<Tile> player1_hand) {
-        this.player1_hand = player1_hand;
-    }
-
-    public ArrayList<Tile> getPlayer2_hand() {
-        return player2_hand;
-    }
-
-    public void setPlayer2_hand(ArrayList<Tile> player2_hand) {
-        this.player2_hand = player2_hand;
     }
 
     public ArrayList<Tile> getBoard() {
