@@ -37,32 +37,19 @@ public class RummiGameState extends GameState {
     private ArrayList<Tile> deck = new ArrayList<Tile>();   //This is the pile of tiles the players are gonna draw from
 
 
-
-    public RummiGameState() {
     /**
-     * Inital Constructor
+     * Initial Constructor
      *
      * Should only be called once at the beginning of the game
      */
-    public RummikubGameState() {
+    public RummiGameState() {
+
         playerId = 0;
         timer = 100;
         //Setting up the beginning of the game the default constructor should only be called once
         setup(player_hand, deck);
 
     }
-    /*
-          External Citation
-          Date: 31 March 2022
-          Problem: Creating deep copy of ArrayList
-          Resource:
-          https://codippa.com/deep-copy-arraylist-java/
-          Solution: I needed to implement Cloneable interface to Tile then iterate over the List and clone them into the copy
-          I don't understand why the try-catch is necessary, but no red squiggly make me happy
-         */
-
-    //Copy Constructor I don't know if it's deep copy since the ArrayList aren't fully instantiated
-    public RummiGameState(RummiGameState copy){
 
 
     /**
@@ -72,7 +59,8 @@ public class RummiGameState extends GameState {
      *
      * @param copy
      */
-    public RummikubGameState(RummikubGameState copy){
+    public RummiGameState(RummiGameState copy){
+
         this.playerId = copy.getPlayerId();
         this.timer = copy.getTimer();
         //Setting the 2D array for the copy and making them a deep copy
@@ -91,7 +79,7 @@ public class RummiGameState extends GameState {
      * @param copy - The Gamestate being copied
      * @param PlayerId - an int meant to help nullify the deck the player shouldnt see
      */
-    public RummikubGameState(RummikubGameState copy, int PlayerId){
+    public RummiGameState(RummiGameState copy, int PlayerId){
         this.playerId = copy.getPlayerId();
         this.timer = copy.getTimer();
         //Setting the 2D array for the copy and making them a deep copy
@@ -249,7 +237,6 @@ public class RummiGameState extends GameState {
           I don't understand why the try-catch is necessary, but no red squiggly make me happy
          */
     }
-
 
 
     //Getters and Setters
