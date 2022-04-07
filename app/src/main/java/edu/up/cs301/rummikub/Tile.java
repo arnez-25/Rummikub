@@ -12,24 +12,33 @@ import android.graphics.Color;
  * */
 
 public class Tile implements Cloneable{
-    private int color;
+    private int tileColor;
     private int tileNum;
 
     //Default constructor for Tile
-    public Tile(int init_color, int init_tileNum) {
-        this.color = init_color;
+    public Tile(int init_tileColor, int init_tileNum) {
+
+        if(0 == init_tileColor) {
+            if (0 != init_tileNum) {
+                throw new IllegalArgumentException();
+            }
+        } else if (0 == init_tileNum) {
+            throw new IllegalArgumentException();
+        }
+
+        this.tileColor = init_tileColor;
         this.tileNum = init_tileNum;
     }
 
     //Tile constructor
     public Tile(){
-        this.color = Color.BLACK;
+        this.tileColor = Color.BLACK;
         this.tileNum = 1;
     }
 
     //Copy constructor for Tile
     public Tile(Tile orig) {
-        this.color = orig.color;
+        this.tileColor = orig.tileColor;
         this.tileNum = orig.tileNum;
     }
 
@@ -41,11 +50,11 @@ public class Tile implements Cloneable{
 
     //Getters and Setters
     public int getColor() {
-        return color;
+        return tileColor;
     }
 
     public void setColor(int color) {
-        this.color = color;
+        this.tileColor = color;
     }
 
     public int getTileNum() {
@@ -58,6 +67,6 @@ public class Tile implements Cloneable{
 
     @Override
     public String toString() {
-        return color + " " + tileNum;
+        return tileColor + " " + tileNum;
     }
 }

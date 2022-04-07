@@ -1,13 +1,7 @@
 package edu.up.cs301.rummikub;
 
-import android.graphics.Color;
-import android.util.Log;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
-import java.util.logging.*;
 
 import edu.up.cs301.game.infoMsg.GameState;
 
@@ -21,7 +15,7 @@ import edu.up.cs301.game.infoMsg.GameState;
  *
  * */
 
-public class RummikubGameState extends GameState {
+public class RummiGameState extends GameState {
 
     /**
      * Instance Variables REQ. for Rummikub:
@@ -43,6 +37,8 @@ public class RummikubGameState extends GameState {
     private ArrayList<Tile> deck = new ArrayList<Tile>();   //This is the pile of tiles the players are gonna draw from
 
 
+
+    public RummiGameState() {
     /**
      * Inital Constructor
      *
@@ -55,6 +51,18 @@ public class RummikubGameState extends GameState {
         setup(player_hand, deck);
 
     }
+    /*
+          External Citation
+          Date: 31 March 2022
+          Problem: Creating deep copy of ArrayList
+          Resource:
+          https://codippa.com/deep-copy-arraylist-java/
+          Solution: I needed to implement Cloneable interface to Tile then iterate over the List and clone them into the copy
+          I don't understand why the try-catch is necessary, but no red squiggly make me happy
+         */
+
+    //Copy Constructor I don't know if it's deep copy since the ArrayList aren't fully instantiated
+    public RummiGameState(RummiGameState copy){
 
 
     /**

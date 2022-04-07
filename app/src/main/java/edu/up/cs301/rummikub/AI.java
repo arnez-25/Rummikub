@@ -3,8 +3,6 @@ package edu.up.cs301.rummikub;
 
 import edu.up.cs301.game.GameComputerPlayer;
 import edu.up.cs301.game.infoMsg.GameInfo;
-import edu.up.cs301.pig.PigGameState;
-import edu.up.cs301.pig.PigRollAction;
 
 /**
  * @authors Jacob Arnez, Maja Elliott, Dylan Kim, Chase Ohmstede
@@ -24,7 +22,7 @@ public class AI extends GameComputerPlayer {
 
     @Override
     protected void receiveInfo(GameInfo info) {
-        RummikubGameState recieved_State = new RummikubGameState ((RummikubGameState) info);
+        RummiGameState recieved_State = new RummiGameState((RummiGameState) info);
 
         if(playerNum != recieved_State.getPlayerId()){
             return;

@@ -21,14 +21,15 @@ import android.view.SurfaceView;
 public class RummiView extends SurfaceView {
     //setting up paints and DrawTileData reference
 
-    public RummikubGameState newState;
+    public RummiGameState newState;
     public RummiHumanPlayer myPlayer;
     public Tile info;
 
-    private static final int tileColor          = Color.parseColor("#FAD3BB");
+    private static final int tileColor          = Color.parseColor("#F9E2D0");
+    private static final int tileColor2         = Color.parseColor("#E2cfb5");
     private static final int boardColor_invis   = Color.parseColor("#2C3493");
     private static final int trayColor_invis    = Color.parseColor("#AE9276");
-    private static final int gridColor          = Color.parseColor("#FFFFFF");
+    private static final int gridColor          = Color.parseColor("#C79C6C");
 
     private static final int tileColor_black    = Color.parseColor("#000000");
     private static final int tileColor_blue     = Color.parseColor("#29ABE2");
@@ -36,6 +37,7 @@ public class RummiView extends SurfaceView {
     private static final int tileColor_orange   = Color.parseColor("#FBB03B");
 
     Paint tilePaint             = new Paint();
+    Paint tilePaint2            = new Paint();
     Paint boardPaint_invis      = new Paint();
     Paint trayPaint_invis       = new Paint();
     Paint gridPaint             = new Paint();
@@ -64,6 +66,9 @@ public class RummiView extends SurfaceView {
         tilePaint.setColor(tileColor);
         tilePaint.setStyle(Paint.Style.FILL);
 
+        tilePaint2.setColor(tileColor2);
+        tilePaint2.setStyle(Paint.Style.FILL);
+
         // to turn tile color invisible, the color value will be the same as the background B)
         boardPaint_invis.setColor(boardColor_invis);
         boardPaint_invis.setStyle(Paint.Style.FILL);
@@ -77,15 +82,19 @@ public class RummiView extends SurfaceView {
 
         tilePaint_black.setColor(tileColor_black);
         tilePaint_black.setStyle(Paint.Style.FILL);
+        tilePaint_black.setTextSize(60);
 
         tilePaint_blue.setColor(tileColor_blue);
         tilePaint_blue.setStyle(Paint.Style.FILL);
+        tilePaint_blue.setTextSize(60);
 
         tilePaint_red.setColor(tileColor_red);
         tilePaint_red.setStyle(Paint.Style.FILL);
+        tilePaint_red.setTextSize(60);
 
         tilePaint_orange.setColor(tileColor_orange);
         tilePaint_orange.setStyle(Paint.Style.FILL);
+        tilePaint_orange.setTextSize(60);
 
         //initializing the tiles
         for (int i = 0; i < 4; i++){
@@ -104,15 +113,24 @@ public class RummiView extends SurfaceView {
         createTray(c);
         //createTile(c);
         //this.invalidate();
+        createTile(c);
+        createTileText(c);
     }
 
     public void createTile(Canvas c){
 
-        float box_x = myPlayer.getBox_x();
-        float box_y = myPlayer.getBox_y();
+        //float box_x = myPlayer.getBox_x();
+        //float box_y = myPlayer.getBox_y();
+
+        float box_x = 10;
+        float box_y = 10;
 
         //Draws the tile (temp values change later)
-        c.drawRect(box_x + 10, box_y + 10, box_x + getWidth_tile() - 10, box_y + getHeight_tile() - 10, tilePaint);
+        //c.drawRect(box_x + 10, box_y + 10, box_x + getWidth_tile() - 10, box_y + getHeight_tile() - 10, tilePaint);
+
+        //draw tile test
+        c.drawRect(box_x, box_y, getWidth_tile() - 10, getHeight_tile() - 10, tilePaint);
+        c.drawCircle(80, 115, (getWidth_tile() / 4), tilePaint2);
     }
 
     public void createGrid(Canvas c){
@@ -222,8 +240,11 @@ public class RummiView extends SurfaceView {
 
     public void createTileText(Canvas c) {
 
-        float text_x = myPlayer.getBox_x();
-        float text_y = myPlayer.getBox_y();
+        //float text_x = myPlayer.getBox_x();
+        //float text_y = myPlayer.getBox_y();
+
+        float text_x = 65;
+        float text_y = 130;
 
         /**
          * black: 0
@@ -232,6 +253,7 @@ public class RummiView extends SurfaceView {
          * red: 3
          */
 
+        /*
         switch (info.getColor()) {
             case 0:
                 c.drawText("" + info.getTileNum(), text_x, text_y, tilePaint_black);
@@ -247,8 +269,15 @@ public class RummiView extends SurfaceView {
                 break;
             default:
                 break;
-
         }
+         */
+
+        //testing draws
+        c.drawText("1", text_x, text_y, tilePaint_black);
+        c.drawText("2", text_x + (getWidth_tile()), text_y, tilePaint_blue);
+        c.drawText("3", text_x + (getWidth_tile() * 2), text_y, tilePaint_orange);
+        c.drawText("4", text_x + (getWidth_tile() * 3), text_y, tilePaint_red);
+
     }
 
     public float getHeight_tile() {
@@ -307,5 +336,5 @@ public class RummiView extends SurfaceView {
         this.tilePaint = tilePaint;
     }
 
-    public RummikubGameState getGameState() { return newState; }
+    public RummiGameState getGameState() { return newState; }
 }

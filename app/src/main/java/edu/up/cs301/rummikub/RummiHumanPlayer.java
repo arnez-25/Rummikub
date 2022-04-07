@@ -1,13 +1,9 @@
 package edu.up.cs301.rummikub;
 
-import android.graphics.Canvas;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
-import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import edu.up.cs301.game.GameHumanPlayer;
@@ -41,7 +37,7 @@ public class RummiHumanPlayer extends GameHumanPlayer implements View.OnTouchLis
 
     /* this is the android activity we're running */
     private GameMainActivity myActivity;
-    private RummikubGameState pState;
+    private RummiGameState pState;
     private RummiView myView;
 
     private float box_x = 0;
@@ -65,7 +61,7 @@ public class RummiHumanPlayer extends GameHumanPlayer implements View.OnTouchLis
 
     @Override
     public void receiveInfo(GameInfo info) {
-        pState = (RummikubGameState) info;
+        pState = (RummiGameState) info;
 
         textview_timer.setText("100s");
         textview_oppo.setText( "Opponent's Hand Count: " + pState.getPlayerHand().size());
