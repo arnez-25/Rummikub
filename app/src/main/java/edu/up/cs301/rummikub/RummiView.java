@@ -25,10 +25,11 @@ public class RummiView extends SurfaceView {
     public RummiHumanPlayer myPlayer;
     public Tile info;
 
-    private static final int tileColor          = Color.parseColor("#FAD3BB");
+    private static final int tileColor          = Color.parseColor("#F9E2D0");
+    private static final int tileColor2         = Color.parseColor("#E2cfb5");
     private static final int boardColor_invis   = Color.parseColor("#2C3493");
     private static final int trayColor_invis    = Color.parseColor("#AE9276");
-    private static final int gridColor          = Color.parseColor("#FFFFFF");
+    private static final int gridColor          = Color.parseColor("#C79C6C");
 
     private static final int tileColor_black    = Color.parseColor("#000000");
     private static final int tileColor_blue     = Color.parseColor("#29ABE2");
@@ -36,6 +37,7 @@ public class RummiView extends SurfaceView {
     private static final int tileColor_orange   = Color.parseColor("#FBB03B");
 
     Paint tilePaint             = new Paint();
+    Paint tilePaint2            = new Paint();
     Paint boardPaint_invis      = new Paint();
     Paint trayPaint_invis       = new Paint();
     Paint gridPaint             = new Paint();
@@ -63,6 +65,9 @@ public class RummiView extends SurfaceView {
         // initialize colors
         tilePaint.setColor(tileColor);
         tilePaint.setStyle(Paint.Style.FILL);
+
+        tilePaint2.setColor(tileColor2);
+        tilePaint2.setStyle(Paint.Style.FILL);
 
         // to turn tile color invisible, the color value will be the same as the background B)
         boardPaint_invis.setColor(boardColor_invis);
@@ -108,16 +113,24 @@ public class RummiView extends SurfaceView {
         createTray(c);
         //createTile(c);
         //this.invalidate();
+        createTile(c);
         createTileText(c);
     }
 
     public void createTile(Canvas c){
 
-        float box_x = myPlayer.getBox_x();
-        float box_y = myPlayer.getBox_y();
+        //float box_x = myPlayer.getBox_x();
+        //float box_y = myPlayer.getBox_y();
+
+        float box_x = 10;
+        float box_y = 10;
 
         //Draws the tile (temp values change later)
-        c.drawRect(box_x + 10, box_y + 10, box_x + getWidth_tile() - 10, box_y + getHeight_tile() - 10, tilePaint);
+        //c.drawRect(box_x + 10, box_y + 10, box_x + getWidth_tile() - 10, box_y + getHeight_tile() - 10, tilePaint);
+
+        //draw tile test
+        c.drawRect(box_x, box_y, getWidth_tile() - 10, getHeight_tile() - 10, tilePaint);
+        c.drawCircle(80, 115, (getWidth_tile() / 4), tilePaint2);
     }
 
     public void createGrid(Canvas c){
