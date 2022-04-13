@@ -88,12 +88,15 @@ public class RummiGameState extends GameState {
         this.player_hand.add(new ArrayList<Tile>());
         deep_copy(this.player_hand.get(1), copy.getPlayerHand().get(1));
         deep_copy(this.deck, copy.getDeck());
-        if(PlayerId == 0){
-            this.player_hand.get(1).clear();        // The clear method should just erase all the objects in the list and set it to null
+
+        //replace the tiles in the other player's hand with blanks to hide them
+        ArrayList<Tile> secret = player_hand.get(1-playerId);
+        int numTiles = secret.size();
+        secret.clear();
+        for(int i = 0; i < numTiles; ++i) {
+            secret.add(Tile.BLANK_TILE);
         }
-        else if(PlayerId == 1){
-            this.player_hand.get(0).clear();
-        }
+        // The clear method should just erase all the objects in the list and set it to null
 
 
     }
@@ -220,12 +223,9 @@ public class RummiGameState extends GameState {
      * Unsure weather it works or not but it compiles ¯\_(ツ)_/¯
      */
     public void deep_copy(ArrayList<Tile> copy, ArrayList<Tile> reference){
-        for(int i = 0; i < reference.size(); i++){                       //This section could probably be turned into a helper method
-            try {
-                copy.add((Tile) reference.get(i).clone());         // I don't understand why the try-catch is necessary
-            }catch  (CloneNotSupportedException e3) {
-                e3.printStackTrace();
-            }
+        copy.clear();
+        for(Tile t : reference){                       //This section could probably be turned into a helper method
+            copy.add(new Tile(t));         // I don't understand why the try-catch is necessary
         }
          /*
           External Citation

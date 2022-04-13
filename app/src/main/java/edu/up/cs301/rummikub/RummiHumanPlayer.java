@@ -195,6 +195,8 @@ public class RummiHumanPlayer extends GameHumanPlayer implements View.OnTouchLis
            myView.setTilePaint(myView.tilePaint);
        }
 
+       myView.invalidate();
+
        return false;
 
     }

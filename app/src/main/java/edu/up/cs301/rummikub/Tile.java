@@ -15,7 +15,14 @@ public class Tile implements Cloneable{
     private int tileColor;
     private int tileNum;
 
-    //Default constructor for Tile
+    public static final Tile BLANK_TILE = new Tile(0,0);    //Acts as a Null tile universal; Helped with Nuxoll
+
+    /**
+     * Default constructor for tile class
+     *
+     * @param init_tileColor
+     * @param init_tileNum
+     */
     public Tile(int init_tileColor, int init_tileNum) {
 
         if(0 == init_tileColor) {
@@ -31,11 +38,18 @@ public class Tile implements Cloneable{
         this.tileNum = init_tileNum;
     }
 
-    //Copy constructor for Tile
+
+    /**
+     * Constructor for deep copy of Tiles
+     *
+     * @param orig
+     */
     public Tile(Tile orig) {
         this.tileColor = orig.tileColor;
         this.tileNum = orig.tileNum;
     }
+
+
 
     //Method from implementation to allow for deepcopy
     @Override
