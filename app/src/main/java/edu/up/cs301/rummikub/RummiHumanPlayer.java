@@ -2,6 +2,7 @@ package edu.up.cs301.rummikub;
 
 import android.util.Log;
 import android.view.MotionEvent;
+import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -163,6 +164,11 @@ public class RummiHumanPlayer extends GameHumanPlayer implements View.OnTouchLis
         button_draw.setOnClickListener(this);
         button_undo.setOnClickListener(this);
         button_done.setOnClickListener(this);
+
+        //Setting on touch listener
+        this.myView = (RummiView) activity.findViewById(R.id.rummiView);
+        myView.setOnTouchListener(this);
+
 
     } //setAsGui
 
