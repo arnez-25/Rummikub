@@ -1,18 +1,9 @@
 package edu.up.cs301.rummikub;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
 
-import android.graphics.Color;
-
-import edu.up.cs301.game.GameHumanPlayer;
-import edu.up.cs301.game.GameMainActivity;
-import edu.up.cs301.rummikub.Tile;
-
-import static java.util.Collections.unmodifiableList;
-
+// I'll comment this tomorrow, I'm tired
 final class TileCheck {
 
     private static final int MIN_GROUP = 3;
@@ -58,9 +49,9 @@ final class TileCheck {
                 isFirst = false;
             }
 
-            if (tileNum != 0 && curr_tileNum != tileNum) {
-                return false;
-            }
+            if (tileNum != 0 && curr_tileNum != tileNum) return false;
+
+            if (!isLegalSet(tiles)) return false;
 
             if (curr_tileNum < MAX_GROUP) curr_tileNum = curr_tileNum + 1;
         }
@@ -70,7 +61,10 @@ final class TileCheck {
     }
 
     private boolean isLegalCurrGroup() {
-        return tiles.size() <= MAX_GROUP && isLegalSet(tiles) && isLegalRun(tiles);
+        return (tiles.size() <= MAX_GROUP)
+                && (tiles.size() >= MIN_GROUP)
+                && isLegalSet(tiles)
+                && isLegalRun(tiles);
     }
 
 }
