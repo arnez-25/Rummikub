@@ -1,5 +1,7 @@
 package edu.up.cs301.rummikub;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -69,6 +71,9 @@ public class RummiGameState extends GameState {
         this.player_hand.add(new ArrayList<Tile>());
         deep_copy(this.player_hand.get(1), copy.getPlayerHand().get(1));
         deep_copy(this.deck, copy.getDeck());
+
+        Log.i("RummiGameState", this.toString());
+
     }
 
     /**
@@ -98,6 +103,7 @@ public class RummiGameState extends GameState {
         }
         // The clear method should just erase all the objects in the list and set it to null
 
+        Log.i("RummiGameState", this.toString());
 
     }
 

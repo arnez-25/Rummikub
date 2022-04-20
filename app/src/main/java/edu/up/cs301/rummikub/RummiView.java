@@ -107,6 +107,7 @@ public class RummiView extends SurfaceView {
         //this.invalidate();
         createTile(c);
         createTileText(c);
+        //paint_hand(c);
     }
 
     public void createTile(Canvas c){
@@ -269,6 +270,14 @@ public class RummiView extends SurfaceView {
         c.drawText("2", text_x + (getWidth_tile()), text_y, tilePaint_blue);
         c.drawText("3", text_x + (getWidth_tile() * 2), text_y, tilePaint_orange);
         c.drawText("4", text_x + (getWidth_tile() * 3), text_y, tilePaint_red);
+
+    }
+
+
+
+    public void paint_hand(Canvas c){
+        c.drawRect(100, 200, 50, 100, tilePaint);
+        c.drawText("12", 5, 5, tilePaint_orange);
 
     }
 

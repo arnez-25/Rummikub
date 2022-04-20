@@ -26,6 +26,9 @@ import edu.up.cs301.game.infoMsg.GameInfo;
 
 public class RummiHumanPlayer extends GameHumanPlayer implements View.OnTouchListener, View.OnClickListener {
 
+    //Add selected tile object
+    //Add
+
     /* time to make all the instance variables !!!! */
     private TextView    textview_timer      = null; //(to be continued)
     private TextView    textview_oppo       = null;
