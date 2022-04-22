@@ -186,7 +186,6 @@ public class RummiView extends SurfaceView {
         // invis tile placement
 
         float pos_x1, pos_y1, pos_x2, pos_y2;
-        ArrayList<Tile> boardClone = newState.getBoard();
 
         for (int i = 0; i < colCount; i++) {
 
@@ -202,42 +201,6 @@ public class RummiView extends SurfaceView {
                 c.drawCircle(pos_x1 + 85, pos_y1 + 115, (getWidth_tile() / 4), getTilePaint2());
 
                 //This section is for the tile numbers
-                //Draw empty tile if there is no tile in the board object
-                if (boardClone.get((i+1)*j) == null) {
-                    c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, boardPaint_invis);
-                    c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, boardPaint_invis);
-                }//Draw a tile with a colored number if a tile is present in the board
-                else {
-                    //Base values for text position
-                    float text_x = 65;
-                    float text_y = 130;
-                    //Get the tile from the board
-                    Tile t = boardClone.get((i+1)*j);
-                    //Draw the base tile
-                    c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, tilePaint);
-                    //Draw the text depending on the position and color of the tile
-                    switch (t.getColor()) {
-                        case 0:
-                            //black tiles
-                            c.drawText("" + t.getTileNum(), text_x + (getWidth_tile()*i),
-                                    text_y + (getHeight_tile()*j), tilePaint_black);
-                            break;
-                        case 1:
-                            //blue tiles
-                            c.drawText("" + t.getTileNum(), text_x, text_y, tilePaint_blue);
-                            break;
-                        case 2:
-                            //orange tiles
-                            c.drawText("" + t.getTileNum(), text_x, text_y, tilePaint_orange);
-                            break;
-                        case 3:
-                            //red tiles
-                            c.drawText("" + t.getTileNum(), text_x, text_y, tilePaint_red);
-                            break;
-                        default://In case something goes very wrong
-                            break;
-                    }
-                }
 
                 if ((i == 0) && (j == 0)) {
                     setWidth_tile(pos_x2);
@@ -296,53 +259,46 @@ public class RummiView extends SurfaceView {
         }
     }
 
-    public void createTileText(Canvas c) {
+    public void createTileText(Canvas c, int i, int j) {
+        //float text_x = 65;
+        //float text_y = 130;
+        ArrayList<Tile> boardClone = newState.getBoard();
 
-        //float text_x = myPlayer.getBox_x();
-        //float text_y = myPlayer.getBox_y();
-
-        float text_x = 65;
-        float text_y = 130;
-
-        /**
-         * black: 0
-         * blue: 1
-         * orange: 2
-         * red: 3
-         */
-
-        /*
-        switch (info.getColor()) {
-            case 0:
-                c.drawText("" + info.getTileNum(), text_x, text_y, tilePaint_black);
-                break;
-            case 1:
-                c.drawText("" + info.getTileNum(), text_x, text_y, tilePaint_blue);
-                break;
-            case 2:
-                c.drawText("" + info.getTileNum(), text_x, text_y, tilePaint_orange);
-                break;
-            case 3:
-                c.drawText("" + info.getTileNum(), text_x, text_y, tilePaint_red);
-                break;
-            default:
-                break;
+        if (boardClone.get((i+1)*j) == null) {
+            c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, boardPaint_invis);
+            c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, boardPaint_invis);
+        }//Draw a tile with a colored number if a tile is present in the board
+        else {
+            //Base values for text position
+            float text_x = 65;
+            float text_y = 130;
+            //Get the tile from the board
+            Tile t = boardClone.get((i+1)*j);
+            //Draw the base tile
+            c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, tilePaint);
+            //Draw the text depending on the position and color of the tile
+            switch (t.getColor()) {
+                case 0:
+                    //black tiles
+                    c.drawText("" + t.getTileNum(), text_x + (getWidth_tile()*i),
+                            text_y + (getHeight_tile()*j), tileNumPaint);
+                    break;
+                case 1:
+                    //blue tiles
+                    c.drawText("" + t.getTileNum(), text_x, text_y, tileNumPaint);
+                    break;
+                case 2:
+                    //orange tiles
+                    c.drawText("" + t.getTileNum(), text_x, text_y, tileNumPaint);
+                    break;
+                case 3:
+                    //red tiles
+                    c.drawText("" + t.getTileNum(), text_x, text_y, tileNumPaint);
+                    break;
+                default://In case something goes very wrong
+                    break;
+            }
         }
-         */
-
-        //testing draws
-        c.drawText("1", text_x, text_y, tilePaint_black);
-        c.drawText("2", text_x + (getWidth_tile()), text_y, tilePaint_blue);
-        c.drawText("3", text_x + (getWidth_tile() * 2), text_y, tilePaint_orange);
-        c.drawText("4", text_x + (getWidth_tile() * 3), text_y, tilePaint_red);
-
-    }
-
-
-
-    public void paint_hand(Canvas c){
-        c.drawRect(100, 200, 50, 100, tilePaint);
-        c.drawText("12", 5, 5, tilePaint_orange);
 
     }
 
