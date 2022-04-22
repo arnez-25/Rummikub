@@ -221,6 +221,7 @@ public class RummiView extends SurfaceView {
         int colCount = 12;
         int rowCount = 2;
 
+        int cntr = 0;
         float pos_x1, pos_y1, pos_x2, pos_y2;
 
         for (int i = 0; i < colCount; i++) {
@@ -232,8 +233,16 @@ public class RummiView extends SurfaceView {
                 pos_x2 = (getWidth_tile() * (i + 1))    + 60;
                 pos_y2 = (getHeight_tile() * (j + 1))   + height_tray + 10;
 
-                c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, getTilePaint());
-                c.drawCircle(pos_x1 + 85, pos_y1 + 115, (getWidth_tile() / 4), getTilePaint2());
+                if (newState.getPlayerHand().get(0).get(cntr).isVisible()) {
+                    c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, getTilePaint());
+                    c.drawCircle(pos_x1 + 85, pos_y1 + 115, (getWidth_tile() / 4), getTilePaint2());
+                }
+
+                else if (!newState.getPlayerHand().get(0).get(cntr).isVisible()){
+                    c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, getTrayPaint_invis());
+                }
+
+                cntr++;
                 this.invalidate();
             }
         }
@@ -351,6 +360,22 @@ public class RummiView extends SurfaceView {
 
     public void setTilePaint2(Paint tilePaint2) {
         this.tilePaint2 = tilePaint2;
+    }
+
+    public Paint getBoardPaint_invis() {
+        return boardPaint_invis;
+    }
+
+    public void setBoardPaint_invis(Paint boardPaint_invis) {
+        this.boardPaint_invis = boardPaint_invis;
+    }
+
+    public Paint getTrayPaint_invis() {
+        return trayPaint_invis;
+    }
+
+    public void setTrayPaint_invis(Paint trayPaint_invis) {
+        this.trayPaint_invis = trayPaint_invis;
     }
 
     public RummiGameState getGameState() { return newState; }

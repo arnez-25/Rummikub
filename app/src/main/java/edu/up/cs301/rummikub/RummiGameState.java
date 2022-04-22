@@ -174,10 +174,10 @@ public class RummiGameState extends GameState {
         for(int i = 1; i <= 2; i++){
             //This should create tiles from 1 - 12 for each color
             for(int j = 1; j <= 13; j++){
-                deck.add(new Tile(1, j));
-                deck.add(new Tile(2, j));
-                deck.add(new Tile(3, j));
-                deck.add(new Tile(4, j));
+                deck.add(new Tile(1, j, true));
+                deck.add(new Tile(2, j, true));
+                deck.add(new Tile(3, j, true));
+                deck.add(new Tile(4, j, true));
 
             }
         }

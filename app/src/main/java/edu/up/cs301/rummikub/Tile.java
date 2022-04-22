@@ -14,16 +14,19 @@ import android.graphics.Color;
 public class Tile implements Cloneable{
     private int tileColor;
     private int tileNum;
+    private boolean visible;
 
-    public static final Tile BLANK_TILE = new Tile(0,0);    //Acts as a Null tile universal; Helped with Nuxoll
+    public static final Tile BLANK_TILE = new Tile(0,0, false);    //Acts as a Null tile universal; Helped with Nuxoll
 
     /**
      * Default constructor for tile class
      *
      * @param init_tileColor
      * @param init_tileNum
+     * @param init_visible
      */
-    public Tile(int init_tileColor, int init_tileNum) {
+
+    public Tile(int init_tileColor, int init_tileNum, boolean init_visible) {
 
         if(0 == init_tileColor) {
             if (0 != init_tileNum) {
@@ -36,6 +39,7 @@ public class Tile implements Cloneable{
 
         this.tileColor = init_tileColor;
         this.tileNum = init_tileNum;
+        this.visible = init_visible;
     }
 
 
@@ -47,9 +51,8 @@ public class Tile implements Cloneable{
     public Tile(Tile orig) {
         this.tileColor = orig.tileColor;
         this.tileNum = orig.tileNum;
+        this.visible = orig.visible;
     }
-
-
 
     //Method from implementation to allow for deepcopy
     @Override
@@ -72,6 +75,14 @@ public class Tile implements Cloneable{
 
     public void setTileNum(int tileNum) {
         this.tileNum = tileNum;
+    }
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
     }
 
     @Override
