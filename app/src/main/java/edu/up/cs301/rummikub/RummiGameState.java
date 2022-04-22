@@ -254,6 +254,14 @@ public class RummiGameState extends GameState {
         this.playerId = playerId;
     }
 
+    public ArrayList<ArrayList<Tile>> getPlayer() {
+        return player_hand;
+    }
+
+    public void setPlayer(ArrayList<ArrayList<Tile>> player) {
+        this.player_hand = player;
+    }
+
     public int getTimer() {
         return timer;
     }
@@ -279,6 +287,8 @@ public class RummiGameState extends GameState {
     }
 
     public ArrayList<ArrayList<Tile>> getPlayerHand(){ return player_hand;}
+
+
 
 
 

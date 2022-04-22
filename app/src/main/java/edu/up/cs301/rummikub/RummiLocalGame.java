@@ -45,7 +45,10 @@ public class RummiLocalGame extends LocalGame {
     @Override
     protected boolean makeMove(GameAction action) {
         if (action instanceof DrawTile){
-            return true;
+            if (official_ref.getPlayerId() == 0) {
+                //official_ref.getPlayer().get(0).add(official_ref.getDeck().get(0));
+
+            }
         }
         return true;
     }
