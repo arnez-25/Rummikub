@@ -44,7 +44,8 @@ public class RummiView extends SurfaceView {
     Paint trayPaint_invis       = new Paint();
     Paint gridPaint             = new Paint();
 
-    Paint tileNumPaint = new Paint();
+    Paint tileNumPaint          = new Paint();
+
     /*Paint tilePaint_black       = new Paint();
     Paint tilePaint_blue        = new Paint();
     Paint tilePaint_red         = new Paint();
@@ -87,9 +88,10 @@ public class RummiView extends SurfaceView {
         gridPaint.setStyle(Paint.Style.STROKE);
         gridPaint.setStrokeWidth(3);
 
-        tileNumPaint.setColor();
+        tileNumPaint.setColor(tileColor_black);
         tileNumPaint.setStyle(Paint.Style.FILL);
         tileNumPaint.setTextSize(60);
+
         /*tilePaint_black.setColor(tileColor_black);
         tilePaint_black.setStyle(Paint.Style.FILL);
         tilePaint_black.setTextSize(60);
@@ -139,7 +141,7 @@ public class RummiView extends SurfaceView {
 
     public void createGrid(Canvas c){
 
-        /*
+
           External Citation
           Date: 27 March 2022
           Problem: Drawing a grid on RummiView
@@ -224,7 +226,7 @@ public class RummiView extends SurfaceView {
          * Here we're essentially doing what we did earlier within the createGrid method.
          * This nested for-loop is making a 2x12 array of invisible "tile" drawings to be
          * colored in earlier with onTouch() methods (represents the hand)
-         */
+        */
 
         int colCount = 12;
         int rowCount = 2;

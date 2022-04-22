@@ -149,6 +149,7 @@ public class RummiGameState extends GameState {
      * @param current_player
      * @param deck
      */
+
     private void drawTile(ArrayList<Tile> current_player, ArrayList<Tile> deck) {
         current_player.add(new Tile(deck.get(0)));
         deck.remove(0);

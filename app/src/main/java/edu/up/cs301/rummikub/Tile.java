@@ -16,7 +16,7 @@ public class Tile implements Cloneable{
     private int tileNum;
     private boolean visible;
 
-    public static final Tile BLANK_TILE = new Tile(0,0, true);    //Acts as a Null tile universal; Helped with Nuxoll
+    public static final Tile BLANK_TILE = new Tile(0,0, false);    //Acts as a Null tile universal; Helped with Nuxoll
 
     /**
      * Default constructor for tile class
