@@ -51,14 +51,11 @@ public class RummiView extends SurfaceView {
     Paint tilePaint_red         = new Paint();
     Paint tilePaint_orange      = new Paint();*/
 
-    private float width_tile;
-    private float height_tile;
+    private float pos_x1, pos_y1, pos_x2, pos_y2;
 
-    private float width_grid;
-    private float height_grid;
-
-    private float width_tray;
-    private float height_tray;
+    private float width_tile, height_tile;
+    private float width_grid, height_grid;
+    private float width_tray, height_tray;
 
     public Paint tmp = new Paint();
 
@@ -119,7 +116,7 @@ public class RummiView extends SurfaceView {
         //createTile(c);
         //this.invalidate();
         createTile(c);
-        createTileText(c);
+        //createTileText(c);
         //paint_hand(c);
     }
 
@@ -141,7 +138,7 @@ public class RummiView extends SurfaceView {
 
     public void createGrid(Canvas c){
 
-
+        /*
           External Citation
           Date: 27 March 2022
           Problem: Drawing a grid on RummiView
@@ -202,6 +199,7 @@ public class RummiView extends SurfaceView {
                 c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, getTilePaint());
                 c.drawCircle(pos_x1 + 85, pos_y1 + 115, (getWidth_tile() / 4), getTilePaint2());
 
+
                 //This section is for the tile numbers
 
                 if ((i == 0) && (j == 0)) {
@@ -232,7 +230,7 @@ public class RummiView extends SurfaceView {
         int rowCount = 2;
 
         int cntr = 0;
-        float pos_x1, pos_y1, pos_x2, pos_y2;
+        //float pos_x1, pos_y1, pos_x2, pos_y2;
 
         for (int i = 0; i < colCount; i++) {
 
@@ -243,6 +241,7 @@ public class RummiView extends SurfaceView {
                 pos_x2 = (getWidth_tile() * (i + 1))    + 60;
                 pos_y2 = (getHeight_tile() * (j + 1))   + height_tray + 10;
 
+                /*
                 if (newState.getPlayerHand().get(0).get(1) == null) {
 
                     if (newState.getPlayerHand().get(0).get(cntr).isVisible()) {
@@ -255,6 +254,7 @@ public class RummiView extends SurfaceView {
                     }
                 }
 
+                 */
                 cntr++;
                 this.invalidate();
             }
@@ -262,44 +262,32 @@ public class RummiView extends SurfaceView {
     }
 
     public void createTileText(Canvas c, int i, int j) {
-        //float text_x = 65;
-        //float text_y = 130;
+
         ArrayList<Tile> boardClone = newState.getBoard();
 
-        if (boardClone.get((i+1)*j) == null) {
-            c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, boardPaint_invis);
-            c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, boardPaint_invis);
-        }//Draw a tile with a colored number if a tile is present in the board
-        else {
-            //Base values for text position
-            float text_x = 65;
-            float text_y = 130;
-            //Get the tile from the board
-            Tile t = boardClone.get((i+1)*j);
-            //Draw the base tile
-            c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, tilePaint);
-            //Draw the text depending on the position and color of the tile
-            switch (t.getColor()) {
-                case 0:
-                    //black tiles
-                    c.drawText("" + t.getTileNum(), text_x + (getWidth_tile()*i),
-                            text_y + (getHeight_tile()*j), tileNumPaint);
-                    break;
-                case 1:
-                    //blue tiles
-                    c.drawText("" + t.getTileNum(), text_x, text_y, tileNumPaint);
-                    break;
-                case 2:
-                    //orange tiles
-                    c.drawText("" + t.getTileNum(), text_x, text_y, tileNumPaint);
-                    break;
-                case 3:
-                    //red tiles
-                    c.drawText("" + t.getTileNum(), text_x, text_y, tileNumPaint);
-                    break;
-                default://In case something goes very wrong
-                    break;
-            }
+        //Get the tile from the board
+        Tile t = boardClone.get((i+1)*j);
+
+        //Draw the text depending on the position and color of the tile
+        switch (t.getColor()) {
+            case 0:
+                //black tiles
+                tileNumPaint.setColor(tileColor_black);
+                break;
+            case 1:
+                //blue tiles
+                tileNumPaint.setColor(tileColor_blue);;
+                break;
+            case 2:
+                //orange tiles
+                tileNumPaint.setColor(tileColor_orange);
+                break;
+            case 3:
+                //red tiles
+                tileNumPaint.setColor(tileColor_red);
+                break;
+            default://In case something goes very wrong
+                break;
         }
 
     }
