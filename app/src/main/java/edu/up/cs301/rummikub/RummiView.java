@@ -7,6 +7,8 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.SurfaceView;
 
+import java.util.ArrayList;
+
 /**
  * @authors Jacob Arnez, Maja Elliott, Dylan Kim, Chase Ohmstede
  * @version 3/31/2022
@@ -42,10 +44,11 @@ public class RummiView extends SurfaceView {
     Paint trayPaint_invis       = new Paint();
     Paint gridPaint             = new Paint();
 
-    Paint tilePaint_black       = new Paint();
+    Paint tileNumPaint = new Paint();
+    /*Paint tilePaint_black       = new Paint();
     Paint tilePaint_blue        = new Paint();
     Paint tilePaint_red         = new Paint();
-    Paint tilePaint_orange      = new Paint();
+    Paint tilePaint_orange      = new Paint();*/
 
     private float width_tile;
     private float height_tile;
@@ -84,7 +87,10 @@ public class RummiView extends SurfaceView {
         gridPaint.setStyle(Paint.Style.STROKE);
         gridPaint.setStrokeWidth(3);
 
-        tilePaint_black.setColor(tileColor_black);
+        tileNumPaint.setColor();
+        tileNumPaint.setStyle(Paint.Style.FILL);
+        tileNumPaint.setTextSize(60);
+        /*tilePaint_black.setColor(tileColor_black);
         tilePaint_black.setStyle(Paint.Style.FILL);
         tilePaint_black.setTextSize(60);
 
@@ -98,7 +104,7 @@ public class RummiView extends SurfaceView {
 
         tilePaint_orange.setColor(tileColor_orange);
         tilePaint_orange.setStyle(Paint.Style.FILL);
-        tilePaint_orange.setTextSize(60);
+        tilePaint_orange.setTextSize(60);*/
 
     }
 
@@ -180,6 +186,7 @@ public class RummiView extends SurfaceView {
         // invis tile placement
 
         float pos_x1, pos_y1, pos_x2, pos_y2;
+        ArrayList<Tile> boardClone = newState.getBoard();
 
         for (int i = 0; i < colCount; i++) {
 
@@ -193,6 +200,44 @@ public class RummiView extends SurfaceView {
 
                 c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, getTilePaint());
                 c.drawCircle(pos_x1 + 85, pos_y1 + 115, (getWidth_tile() / 4), getTilePaint2());
+
+                //This section is for the tile numbers
+                //Draw empty tile if there is no tile in the board object
+                if (boardClone.get((i+1)*j) == null) {
+                    c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, boardPaint_invis);
+                    c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, boardPaint_invis);
+                }//Draw a tile with a colored number if a tile is present in the board
+                else {
+                    //Base values for text position
+                    float text_x = 65;
+                    float text_y = 130;
+                    //Get the tile from the board
+                    Tile t = boardClone.get((i+1)*j);
+                    //Draw the base tile
+                    c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, tilePaint);
+                    //Draw the text depending on the position and color of the tile
+                    switch (t.getColor()) {
+                        case 0:
+                            //black tiles
+                            c.drawText("" + t.getTileNum(), text_x + (getWidth_tile()*i),
+                                    text_y + (getHeight_tile()*j), tilePaint_black);
+                            break;
+                        case 1:
+                            //blue tiles
+                            c.drawText("" + t.getTileNum(), text_x, text_y, tilePaint_blue);
+                            break;
+                        case 2:
+                            //orange tiles
+                            c.drawText("" + t.getTileNum(), text_x, text_y, tilePaint_orange);
+                            break;
+                        case 3:
+                            //red tiles
+                            c.drawText("" + t.getTileNum(), text_x, text_y, tilePaint_red);
+                            break;
+                        default://In case something goes very wrong
+                            break;
+                    }
+                }
 
                 if ((i == 0) && (j == 0)) {
                     setWidth_tile(pos_x2);

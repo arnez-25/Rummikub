@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Rummikub.iml" filepath="$PROJECT_DIR$/.idea/modules/Rummikub.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Rummikub.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Rummikub.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Rummi_game.iml" filepath="$PROJECT_DIR$/.idea/modules/Rummi_game.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Rummi_game.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Rummi_game.app.iml" />
     </modules>
   </component>
 </project>
