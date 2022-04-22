@@ -56,10 +56,15 @@ public class RummiView extends SurfaceView {
     private float width_tray;
     private float height_tray;
 
+    public Paint tmp = new Paint();
+
     public RummiView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         setWillNotDraw(false);
+
+        tmp.setColor(tileColor);
+        tmp.setStyle(Paint.Style.FILL);
 
         // initialize colors
         tilePaint.setColor(tileColor);
@@ -185,7 +190,9 @@ public class RummiView extends SurfaceView {
                 pos_x2 = (width_grid  / colCount) * (i + 1);
                 pos_y2 = (height_grid / rowCount) * (j + 1);
                 //System.out.println(pos_x2);
-                c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, boardPaint_invis);
+
+                c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, getTilePaint());
+                c.drawCircle(pos_x1 + 85, pos_y1 + 115, (getWidth_tile() / 4), getTilePaint2());
 
                 if ((i == 0) && (j == 0)) {
                     setWidth_tile(pos_x2);
@@ -226,6 +233,7 @@ public class RummiView extends SurfaceView {
                 pos_y2 = (getHeight_tile() * (j + 1))   + height_tray + 10;
 
                 c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, getTilePaint());
+                c.drawCircle(pos_x1 + 85, pos_y1 + 115, (getWidth_tile() / 4), getTilePaint2());
                 this.invalidate();
             }
         }
@@ -335,6 +343,14 @@ public class RummiView extends SurfaceView {
 
     public void setTilePaint(Paint tilePaint) {
         this.tilePaint = tilePaint;
+    }
+
+    public Paint getTilePaint2() {
+        return tilePaint2;
+    }
+
+    public void setTilePaint2(Paint tilePaint2) {
+        this.tilePaint2 = tilePaint2;
     }
 
     public RummiGameState getGameState() { return newState; }
