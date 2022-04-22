@@ -162,7 +162,6 @@ public class RummiGameState extends GameState {
             drawTile(player_hand.get(1), deck);
             changeTurn();
             return true;
-
         }
 
         return false;

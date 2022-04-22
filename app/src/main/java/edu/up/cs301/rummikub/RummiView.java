@@ -233,13 +233,16 @@ public class RummiView extends SurfaceView {
                 pos_x2 = (getWidth_tile() * (i + 1))    + 60;
                 pos_y2 = (getHeight_tile() * (j + 1))   + height_tray + 10;
 
-                if (newState.getPlayerHand().get(0).get(cntr).isVisible()) {
-                    c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, getTilePaint());
-                    c.drawCircle(pos_x1 + 85, pos_y1 + 115, (getWidth_tile() / 4), getTilePaint2());
-                }
+                if (newState.getPlayerHand().get(0).get(1) == null) {
 
-                else if (!newState.getPlayerHand().get(0).get(cntr).isVisible()){
-                    c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, getTrayPaint_invis());
+                    if (newState.getPlayerHand().get(0).get(cntr).isVisible()) {
+                        c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, getTilePaint());
+                        c.drawCircle(pos_x1 + 85, pos_y1 + 115, (getWidth_tile() / 4), getTilePaint2());
+                    }
+
+                    else if (!newState.getPlayerHand().get(0).get(cntr).isVisible()){
+                        c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, getTrayPaint_invis());
+                    }
                 }
 
                 cntr++;
