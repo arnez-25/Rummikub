@@ -50,6 +50,8 @@ public class RummiGameState extends GameState {
         timer = 100;
         //Setting up the beginning of the game the default constructor should only be called once
         setup(player_hand, deck);
+        shuffle(player_hand.get(0));
+        shuffle(player_hand.get(1));
 
     }
 
@@ -142,10 +144,13 @@ public class RummiGameState extends GameState {
         else if (playerId == 1) playerId = 0;
     }
 
-    //Helper method for adding tiles to player hand(s)
-    //WARNING: this will only add too player 0s hand
-    private void drawTile(ArrayList<Tile> player_hand, ArrayList<Tile> deck) {
-        player_hand.add(deck.get(0));
+    /**Draws tile from deck by making a deep copy of it
+     *
+     * @param current_player
+     * @param deck
+     */
+    private void drawTile(ArrayList<Tile> current_player, ArrayList<Tile> deck) {
+        current_player.add(new Tile(deck.get(0)));
         deck.remove(0);
     }
 
