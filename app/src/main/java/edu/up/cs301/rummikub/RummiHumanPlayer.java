@@ -49,6 +49,8 @@ public class RummiHumanPlayer extends GameHumanPlayer implements View.OnTouchLis
     private float box_y = 0;
     private boolean hasTouched = false;
 
+    private Tile selected;
+
     /**
      * constructor does nothing extra
      */
@@ -69,7 +71,7 @@ public class RummiHumanPlayer extends GameHumanPlayer implements View.OnTouchLis
         pState = (RummiGameState) info;
 
         textview_timer.setText("100s");
-        textview_oppo.setText( "Opponent's Hand Count: " + pState.getPlayerHand().size());
+        textview_oppo.setText( "Opponent's Hand Count: " + pState.getPlayerHand().get(1).size());
         textview_deck.setText("Deck: " + pState.getDeck().size());
 
         /* below is code from finished PigHumanPlayer
@@ -157,6 +159,7 @@ public class RummiHumanPlayer extends GameHumanPlayer implements View.OnTouchLis
         if (button.getId() == R.id.button_draw){
             game.sendAction(new DrawTile(this));
             Log.d("Button_draw", "onClick: DrawTile Gameaction sent");
+            myView.invalidate();
         }
 
         /*
@@ -186,6 +189,8 @@ public class RummiHumanPlayer extends GameHumanPlayer implements View.OnTouchLis
         Log.i("OnTouch", "X Coord: " + x);
         Log.i("OnTouch", "Y Coord: " + y);
 
+        myView.invalidate();
+
         // hitboxes for tiles (board)
         for (int i = 0; i < myView.getWidth_grid(); i += myView.getWidth_tile()) {
 
@@ -207,8 +212,6 @@ public class RummiHumanPlayer extends GameHumanPlayer implements View.OnTouchLis
        if (x == getBox_x() && y == getBox_y() && myView.getTilePaint() == myView.boardPaint_invis){
            myView.setTilePaint(myView.tilePaint);
        }
-
-       myView.invalidate();
 
        return true;
 

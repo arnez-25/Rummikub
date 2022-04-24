@@ -26,7 +26,7 @@ public class RummiLocalGame extends LocalGame {
 
     @Override
     protected boolean canMove(int playerIdx) {
-        return true;
+        return official_ref.getPlayerId() == playerIdx;
     }
 
     @Override
@@ -47,11 +47,18 @@ public class RummiLocalGame extends LocalGame {
 
         if (action instanceof DrawTile){
             official_ref.drawTile_action(official_ref.getDeck());
+            if (official_ref.getPlayerId() == 0) official_ref.setPlayerId(1);
+            else official_ref.setPlayerId(0);
+            return true;
         }
 
+        if (action instanceof EndTurn){
+            if (official_ref.getPlayerId() == 0) official_ref.setPlayerId(1);
+            else official_ref.setPlayerId(0);
+            return true;
+        }
 
         return false;
-
 
     }
 }
