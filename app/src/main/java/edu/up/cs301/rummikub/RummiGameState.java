@@ -34,7 +34,7 @@ public class RummiGameState extends GameState {
 
     private int playerId;
     private int timer;
-    private ArrayList<ArrayList<Tile>> player_hand = new ArrayList<>();     //2-D Array for both player hands and player tile
+    private ArrayList<ArrayList<Tile>> player_hand = new ArrayList<ArrayList<Tile>>();     //2-D Array for both player hands and player tile
     private ArrayList<Tile> board = new ArrayList<Tile>();  //This is the list of tiles currently on the board
     private ArrayList<Tile> deck = new ArrayList<Tile>();   //This is the pile of tiles the players are gonna draw from
 
@@ -52,6 +52,7 @@ public class RummiGameState extends GameState {
         timer = 100;
         //Setting up the beginning of the game the default constructor should only be called once
         setup(player_hand, deck);
+        Log.i("RummiGameStateC", this.toString());
         //shuffle(player_hand.get(0));
         //shuffle(player_hand.get(1));
     }
@@ -73,9 +74,9 @@ public class RummiGameState extends GameState {
 
         this.player_hand.add(new ArrayList<Tile>());
         deep_copy(this.player_hand.get(1), copy.getPlayerHand().get(1));
-        deep_copy(this.deck, copy.getDeck());
 
-        Log.i("RummiGameState", this.toString());
+        deep_copy(this.deck, copy.getDeck());
+        Log.i("RummiGameStateMCC", this.toString());
 
     }
 
@@ -108,7 +109,7 @@ public class RummiGameState extends GameState {
         }
         // The clear method should just erase all the objects in the list and set it to null
 
-        Log.i("RummiGameState", this.toString());
+        Log.i("RummiGameStateCC", this.toString());
 
     }
 
@@ -189,6 +190,7 @@ public class RummiGameState extends GameState {
 
             }
         }
+        shuffle();
 
     }
 
@@ -196,19 +198,19 @@ public class RummiGameState extends GameState {
     private void mulligan(ArrayList<Tile> deck) {
         for(int i = 0; i < 7; i++) {
             drawTile(player_hand.get(0), deck);
+            deck.remove(0);
             drawTile(player_hand.get(1), deck);
+            deck.remove(0);
         }
     }
 
     //Helper method to shuffle the tile pile once it's instantiated
-    private void shuffle(ArrayList<Tile> deck){
-        Collections.shuffle(deck);
-    }
+    private void shuffle(){ Collections.shuffle(getDeck()); }
 
     //Helper function that sets up the 2D list
     private void setup(ArrayList<ArrayList<Tile>> list, ArrayList<Tile> deck){
         setup_pile(deck); //Instantiating all the tiles in the deck
-        shuffle(deck);
+        //shuffle();
 
         //First two are the player hands
         list.add(new ArrayList<Tile>());
@@ -216,9 +218,10 @@ public class RummiGameState extends GameState {
         //This is the tile pile
 
         //shuffle(deck);
-        //mulligan(deck);
-        transfer_tile(list.get(0), deck);
-        transfer_tile(list.get(1), deck);
+        mulligan(deck);
+        //transfer_tile(list.get(0), deck);
+        //transfer_tile(list.get(1), deck);
+        Log.i("RummiGameState", this.toString());
     }
 
     //Checks if either player hand is empty. This should be called at the end of each turn

@@ -44,8 +44,6 @@ public class RummiMainActivity extends GameMainActivity {
         defaultConfig.addPlayer("Computer", 1); // player 2: a computer player
         defaultConfig.setRemoteData("Remote Human Player", "", 0);
 
-
-
         return defaultConfig;
     }//createDefaultConfig
 
