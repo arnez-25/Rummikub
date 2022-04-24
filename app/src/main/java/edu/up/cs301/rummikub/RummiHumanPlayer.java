@@ -203,6 +203,7 @@ public class RummiHumanPlayer extends GameHumanPlayer implements View.OnTouchLis
                         setBox_y((j / myView.getHeight_tile()));
                         Log.i("OnTouch", "On touch tracking is working");
                         setHasTouched(true);
+                        game.sendAction(new SelectTile(this));
                 }
                 else setHasTouched(false);
             }
@@ -213,8 +214,9 @@ public class RummiHumanPlayer extends GameHumanPlayer implements View.OnTouchLis
            myView.setTilePaint(myView.tilePaint);
        }
 
-       return true;
+        game.sendAction(new EndTurn(this));
 
+       return true;
     }
 
     public float getBox_x() {

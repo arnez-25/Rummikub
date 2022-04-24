@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 /**
  * @authors Jacob Arnez, Maja Elliott, Dylan Kim, Chase Ohmstede
- * @version 3/31/2022
+ * @version 4/23/2022
  *
  * This class is designed to draw our Rummikub tiles.
  *
