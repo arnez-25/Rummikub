@@ -204,7 +204,6 @@ public class RummiView extends SurfaceView {
                 c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, getTilePaint());
                 c.drawCircle(pos_x1 + 85, pos_y1 + 115, (getWidth_tile() / 4), getTilePaint2());
 
-
                 //This section is for the tile numbers
 
                 if ((i == 0) && (j == 0)) {

@@ -6,32 +6,32 @@ import edu.up.cs301.game.infoMsg.GameInfo;
 
 /**
  * @authors Jacob Arnez, Maja Elliott, Dylan Kim, Chase Ohmstede
- * @version 3/30/2022
+ * @version 4/23/2022
  *
- * Compiles AIs
+ * Contains playing style for easy ai.
  *
- * Bugs: AI not fully finished.
+ * Bugs:
  *
  * */
 
-public class AI extends GameComputerPlayer {
+public class EasyAI extends GameComputerPlayer {
 
-    public AI(String name) {
+    public EasyAI(String name) {
         super(name);
     }
 
     @Override
     protected void receiveInfo(GameInfo info) {
-        RummiGameState recieved_State = new RummiGameState((RummiGameState) info);
+        RummiGameState received_State = new RummiGameState((RummiGameState) info);
 
-        if(playerNum != recieved_State.getPlayerId()){
+        if(playerNum != received_State.getPlayerId()){
             return;
         }
-        /*
-        if (playerNum == recieved_State.getPlayerId()){
+
+        if (playerNum == received_State.getPlayerId()){
             //if there are tiles in the pile it will continue to draw
             //else it will place tiles
-            if (){
+            if (received_State.getDeck() != null){
                 DrawTile draw = new DrawTile(this);
                 game.sendAction(draw);
             }
@@ -40,10 +40,5 @@ public class AI extends GameComputerPlayer {
                 game.sendAction(place);
             }
         }
-
-        */
     }
-    //Needs to be able to tell which AI is which
-    //Updates game and makes decisions (vary between AI)
-
 }
