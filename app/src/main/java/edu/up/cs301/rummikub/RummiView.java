@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.SurfaceView;
 
 import java.util.ArrayList;
@@ -110,14 +111,17 @@ public class RummiView extends SurfaceView {
     @Override
     public void onDraw(Canvas c) {
         //Need to add: Way to get info for drawings (location, height, width)
+        super.onDraw(c);
         createGrid(c);
         //createTile(c);
-        createTray(c);
+        //createTray(c);
         //createTile(c);
         //this.invalidate();
         createTile(c);
         //createTileText(c);
         //paint_hand(c);
+
+        if (newState != null) createTray(c);
     }
 
     public void createTile(Canvas c){
@@ -241,20 +245,23 @@ public class RummiView extends SurfaceView {
                 pos_x2 = (getWidth_tile() * (i + 1))    + 60;
                 pos_y2 = (getHeight_tile() * (j + 1))   + height_tray + 10;
 
-                /*
-                if (newState.getPlayerHand().get(0).get(1) == null) {
+                if (newState != null) {
 
-                    if (newState.getPlayerHand().get(0).get(cntr).isVisible()) {
+                    if (newState.getPlayerHand().get(0).get(cntr) != null) {
                         c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, getTilePaint());
                         c.drawCircle(pos_x1 + 85, pos_y1 + 115, (getWidth_tile() / 4), getTilePaint2());
+                        this.invalidate();
                     }
 
-                    else if (!newState.getPlayerHand().get(0).get(cntr).isVisible()){
+                    else if (newState.getPlayerHand().get(0).get(cntr) == null){
                         c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, getTrayPaint_invis());
+                        this.invalidate();
                     }
                 }
 
-                 */
+                Log.i("createTray", "createTray is calling");
+                //Log.i("createTray", "# tiles in hand: " + newState.getPlayerHand().get(0).size());
+
                 cntr++;
                 this.invalidate();
             }
@@ -289,7 +296,6 @@ public class RummiView extends SurfaceView {
             default://In case something goes very wrong
                 break;
         }
-
     }
 
     public float getHeight_tile() {
