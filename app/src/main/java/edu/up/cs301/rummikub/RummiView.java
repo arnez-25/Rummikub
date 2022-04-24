@@ -26,7 +26,12 @@ public class RummiView extends SurfaceView {
 
     public RummiGameState newState;
     public RummiHumanPlayer myPlayer;
+    public ArrayList<Tile> hand;
     //public Tile info; might wanna get rid of?????
+
+
+
+
 
     private static final int tileColor          = Color.parseColor("#F9E2D0");
     private static final int tileColor2         = Color.parseColor("#E2cfb5");

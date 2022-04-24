@@ -38,6 +38,7 @@ public class RummiGameState extends GameState {
     private ArrayList<Tile> board = new ArrayList<Tile>();  //This is the list of tiles currently on the board
     private ArrayList<Tile> deck = new ArrayList<Tile>();   //This is the pile of tiles the players are gonna draw from
 
+
     // qprivate RummiView myView;
 
     /**
@@ -54,7 +55,6 @@ public class RummiGameState extends GameState {
         shuffle(player_hand.get(0));
         shuffle(player_hand.get(1));
     }
-
 
     /**
      * Master Copy constructor
