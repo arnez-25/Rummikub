@@ -118,14 +118,14 @@ public class RummiGameState extends GameState {
         String str_return
 
                 = "~~ Current Game Info ~~                      \n\n"
-                + "Currently Player " + playerId + "'s Turn    \n"
+                + "Currently Player " + playerId + "'s Turn     \n"
                 + "Timer: " + timer + "s                        \n\n"
                 + "Player 1 Hand:                               \n"
-                + player_hand.get(0).toString() + "                          \n\n"
+                + player_hand.get(0).toString() + "             \n\n"
                 + "Player 2 Hand:                               \n"
-                + player_hand.get(1).toString() + "                          \n\n"
+                + player_hand.get(1).toString() + "             \n\n"
                 + "Tiles on Board:                              \n"
-                + board.toString() + "                               \n\n"
+                + board.toString() + "                          \n\n"
                 + "Tiles in Pile:                               \n"
                 + deck.toString();
 
@@ -213,8 +213,8 @@ public class RummiGameState extends GameState {
         setup_pile(deck); //Instantiating all the tiles in the deck
         shuffle(deck);
         mulligan(deck);
-        transfer_tile(list.get(0), deck);
-        transfer_tile(list.get(1), deck);
+        //transfer_tile(list.get(0), deck);
+        //transfer_tile(list.get(1), deck);
     }
 
     //Checks if either player hand is empty. This should be called at the end of each turn

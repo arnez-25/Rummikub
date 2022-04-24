@@ -24,7 +24,7 @@ import java.util.ArrayList;
 public class RummiView extends SurfaceView {
     //setting up paints and DrawTileData reference
 
-    public RummiGameState newState;
+    public RummiGameState newState = new RummiGameState();
     public RummiHumanPlayer myPlayer;
     //public Tile info; might wanna get rid of?????
 
@@ -51,6 +51,8 @@ public class RummiView extends SurfaceView {
     Paint tilePaint_blue        = new Paint();
     Paint tilePaint_red         = new Paint();
     Paint tilePaint_orange      = new Paint();*/
+
+    private ArrayList<Tile> newHand = new ArrayList<Tile>(0);
 
     private float pos_x1, pos_y1, pos_x2, pos_y2;
 
@@ -111,17 +113,16 @@ public class RummiView extends SurfaceView {
     @Override
     public void onDraw(Canvas c) {
         //Need to add: Way to get info for drawings (location, height, width)
-        super.onDraw(c);
         createGrid(c);
         //createTile(c);
-        //createTray(c);
+        createTray(c);
         //createTile(c);
         //this.invalidate();
         createTile(c);
         //createTileText(c);
         //paint_hand(c);
 
-        if (newState != null) createTray(c);
+        Log.i("onDraw", "onDraw is drawing");
     }
 
     public void createTile(Canvas c){
@@ -161,7 +162,7 @@ public class RummiView extends SurfaceView {
         {
             float pos = (width_grid / colCount) * (i);
             c.drawLine(pos, 0, pos, height_grid, gridPaint);
-            this.invalidate();
+            //this.invalidate();
         }
 
         // horizontal lines
@@ -172,7 +173,7 @@ public class RummiView extends SurfaceView {
         {
             float pos = (height_grid / rowCount) * (i);
             c.drawLine(0, pos, width_grid, pos, gridPaint);
-            this.invalidate();
+            //this.invalidate();
         }
 
         /**
@@ -211,7 +212,7 @@ public class RummiView extends SurfaceView {
                     setHeight_tile(pos_y2);
                 }
 
-                this.invalidate();
+                //this.invalidate();
             }
         }
     }
@@ -236,36 +237,36 @@ public class RummiView extends SurfaceView {
         int cntr = 0;
         //float pos_x1, pos_y1, pos_x2, pos_y2;
 
-        for (int i = 0; i < colCount; i++) {
+        for (int i = 0; i < rowCount; i++) {
 
-            for (int j = 0; j < rowCount; j++) {
+            for (int j = 0; j < colCount; j++) {
 
-                pos_x1 = (getWidth_tile() * (i))        + 60;
-                pos_y1 = (getHeight_tile() * (j))       + height_tray + 10;
-                pos_x2 = (getWidth_tile() * (i + 1))    + 60;
-                pos_y2 = (getHeight_tile() * (j + 1))   + height_tray + 10;
+                pos_x1 = (getWidth_tile() * (j))        + 60;
+                pos_y1 = (getHeight_tile() * (i))       + height_tray + 10;
+                pos_x2 = (getWidth_tile() * (j + 1))    + 60;
+                pos_y2 = (getHeight_tile() * (i + 1))   + height_tray + 10;
 
-                if (newState != null) {
+                if ((newState != null) && (cntr < newState.getPlayerHand().get(0).size())) {
 
-                    if (newState.getPlayerHand().get(0).get(cntr) != null) {
+                    if (newState.getPlayerHand().get(0).get(cntr).isVisible()) {
                         c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, getTilePaint());
-                        c.drawCircle(pos_x1 + 85, pos_y1 + 115, (getWidth_tile() / 4), getTilePaint2());
-                        this.invalidate();
+                        c.drawCircle(pos_x1 + 62, pos_y1 + 60, (getWidth_tile() / 4), getTilePaint2());
+                        //this.invalidate();
                     }
 
-                    else if (newState.getPlayerHand().get(0).get(cntr) == null){
+                    else if (!newState.getPlayerHand().get(0).get(cntr).isVisible()){
                         c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, getTrayPaint_invis());
-                        this.invalidate();
+                        //this.invalidate();
                     }
                 }
 
-                Log.i("createTray", "createTray is calling");
-                //Log.i("createTray", "# tiles in hand: " + newState.getPlayerHand().get(0).size());
-
                 cntr++;
-                this.invalidate();
+
             }
         }
+        Log.i("createTray", "createTray is calling");
+        Log.i("createTray", "# tiles in hand: " + newState.getPlayerHand().get(0).size());
+        //this.invalidate();
     }
 
     public void createTileText(Canvas c, int i, int j) {
