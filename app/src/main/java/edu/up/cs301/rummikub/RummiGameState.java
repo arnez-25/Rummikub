@@ -52,8 +52,8 @@ public class RummiGameState extends GameState {
         timer = 100;
         //Setting up the beginning of the game the default constructor should only be called once
         setup(player_hand, deck);
-        shuffle(player_hand.get(0));
-        shuffle(player_hand.get(1));
+        //shuffle(player_hand.get(0));
+        //shuffle(player_hand.get(1));
     }
 
     /**
@@ -120,9 +120,9 @@ public class RummiGameState extends GameState {
                 = "~~ Current Game Info ~~                      \n\n"
                 + "Currently Player " + playerId + "'s Turn     \n"
                 + "Timer: " + timer + "s                        \n\n"
-                + "Player 1 Hand:                               \n"
+                + "Player 0 Hand:                               \n"
                 + player_hand.get(0).toString() + "             \n\n"
-                + "Player 2 Hand:                               \n"
+                + "Player 1 Hand:                               \n"
                 + player_hand.get(1).toString() + "             \n\n"
                 + "Tiles on Board:                              \n"
                 + board.toString() + "                          \n\n"
@@ -189,6 +189,7 @@ public class RummiGameState extends GameState {
 
             }
         }
+
     }
 
     //Helper method for adding tiles to player hand(s) at the start of the game
@@ -206,15 +207,18 @@ public class RummiGameState extends GameState {
 
     //Helper function that sets up the 2D list
     private void setup(ArrayList<ArrayList<Tile>> list, ArrayList<Tile> deck){
+        setup_pile(deck); //Instantiating all the tiles in the deck
+        shuffle(deck);
+
         //First two are the player hands
         list.add(new ArrayList<Tile>());
         list.add(new ArrayList<Tile>());
         //This is the tile pile
-        setup_pile(deck); //Instantiating all the tiles in the deck
-        shuffle(deck);
-        mulligan(deck);
-        //transfer_tile(list.get(0), deck);
-        //transfer_tile(list.get(1), deck);
+
+        //shuffle(deck);
+        //mulligan(deck);
+        transfer_tile(list.get(0), deck);
+        transfer_tile(list.get(1), deck);
     }
 
     //Checks if either player hand is empty. This should be called at the end of each turn
