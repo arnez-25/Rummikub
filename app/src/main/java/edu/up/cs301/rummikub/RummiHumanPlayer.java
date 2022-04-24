@@ -105,42 +105,6 @@ public class RummiHumanPlayer extends GameHumanPlayer implements View.OnTouchLis
 
     }//receiveInfo
 
-    /**
-     * this method gets called when the user clicks the die or hold button. It
-     * creates a new PigRollAction or PigHoldAction and sends it to the game.
-     *
-     * @param button
-     * 		the button that was clicked
-     */
-    public void onClick(View button) {
-
-        if (button.getId() == R.id.button_quit) {
-            System.exit(0);
-        }
-
-        if (button.getId() == R.id.button_draw){
-            game.sendAction(new DrawTile(this));
-        }
-
-        /*
-        if (button.getId() == R.id.button_undo) {
-            //game.sendAction(new Undo(this)); (saving undo for beta testing)
-        }
-        */
-
-        if (button.getId() == R.id.button_done) {
-            game.sendAction(new EndTurn(this));
-        }
-
-        /* below is code from finished PigHumanPlayer
-        if (button.getId() == R.id.dieButton) {
-            game.sendAction(new PigRollAction(this));
-        }
-        else if (button.getId() == R.id.holdButton) {
-            game.sendAction(new PigHoldAction(this));
-        } */
-    }// onClick
-
     @Override
     public void setAsGui(GameMainActivity activity) {
 
@@ -174,6 +138,44 @@ public class RummiHumanPlayer extends GameHumanPlayer implements View.OnTouchLis
 
 
     } //setAsGui
+
+    /**
+     * this method gets called when the user clicks the die or hold button. It
+     * creates a new PigRollAction or PigHoldAction and sends it to the game.
+     *
+     * @param button
+     * 		the button that was clicked
+     */
+    public void onClick(View button) {
+
+        Log.d("OnClick", "onClick: Onclick method called");
+        if (button.getId() == R.id.button_quit) {
+            System.exit(0);
+        }
+
+        if (button.getId() == R.id.button_draw){
+            game.sendAction(new DrawTile(this));
+            Log.d("Button_draw", "onClick: DrawTile Gameaction sent");
+        }
+
+        /*
+        if (button.getId() == R.id.button_undo) {
+            //game.sendAction(new Undo(this)); (saving undo for beta testing)
+        }
+        */
+
+        if (button.getId() == R.id.button_done) {
+            game.sendAction(new EndTurn(this));
+        }
+
+        /* below is code from finished PigHumanPlayer
+        if (button.getId() == R.id.dieButton) {
+            game.sendAction(new PigRollAction(this));
+        }
+        else if (button.getId() == R.id.holdButton) {
+            game.sendAction(new PigHoldAction(this));
+        } */
+    }// onClick
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
