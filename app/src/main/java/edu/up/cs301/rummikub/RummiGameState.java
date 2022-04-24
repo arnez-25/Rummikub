@@ -38,6 +38,7 @@ public class RummiGameState extends GameState {
     private ArrayList<Tile> board = new ArrayList<Tile>();  //This is the list of tiles currently on the board
     private ArrayList<Tile> deck = new ArrayList<Tile>();   //This is the pile of tiles the players are gonna draw from
 
+    // qprivate RummiView myView;
 
     /**
      * Initial Constructor
@@ -52,7 +53,6 @@ public class RummiGameState extends GameState {
         setup(player_hand, deck);
         shuffle(player_hand.get(0));
         shuffle(player_hand.get(1));
-
     }
 
 
@@ -70,6 +70,7 @@ public class RummiGameState extends GameState {
         //Setting the 2D array for the copy and making them a deep copy
         this.player_hand.add(new ArrayList<Tile>());
         deep_copy(this.player_hand.get(0), copy.getPlayerHand().get(0));
+
         this.player_hand.add(new ArrayList<Tile>());
         deep_copy(this.player_hand.get(1), copy.getPlayerHand().get(1));
         deep_copy(this.deck, copy.getDeck());
@@ -89,9 +90,11 @@ public class RummiGameState extends GameState {
     public RummiGameState(RummiGameState copy, int PlayerId){
         this.playerId = copy.getPlayerId();
         this.timer = copy.getTimer();
+
         //Setting the 2D array for the copy and making them a deep copy
         this.player_hand.add(new ArrayList<Tile>());
         deep_copy(this.player_hand.get(0), copy.getPlayerHand().get(0));
+
         this.player_hand.add(new ArrayList<Tile>());
         deep_copy(this.player_hand.get(1), copy.getPlayerHand().get(1));
         deep_copy(this.deck, copy.getDeck());

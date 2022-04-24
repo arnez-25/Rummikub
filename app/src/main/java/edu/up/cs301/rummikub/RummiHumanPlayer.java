@@ -1,5 +1,6 @@
 package edu.up.cs301.rummikub;
 
+import android.graphics.Canvas;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
@@ -134,7 +135,7 @@ public class RummiHumanPlayer extends GameHumanPlayer implements View.OnTouchLis
 
         //Setting on touch listener
         this.myView = (RummiView) activity.findViewById(R.id.rummiView);
-        myView.setOnTouchListener(this);
+        //myView.setOnTouchListener(this);
 
 
     } //setAsGui
@@ -179,27 +180,28 @@ public class RummiHumanPlayer extends GameHumanPlayer implements View.OnTouchLis
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
-       int x = (int) motionEvent.getX();
-       int y = (int) motionEvent.getY();
-       Log.i("OnTouch", "X Coord: " + x);
-       Log.i("OnTouch", "Y Coord: " + y);
 
-       // hitboxes for tiles (board)
-       for (int i = 0; i < myView.getWidth_grid(); i += myView.getWidth_tile()) {
+        int x = (int) motionEvent.getX();
+        int y = (int) motionEvent.getY();
+        Log.i("OnTouch", "X Coord: " + x);
+        Log.i("OnTouch", "Y Coord: " + y);
 
-           for (int j = 0; j < myView.getHeight_grid(); j += myView.getHeight_tile()) {
+        // hitboxes for tiles (board)
+        for (int i = 0; i < myView.getWidth_grid(); i += myView.getWidth_tile()) {
 
-               if (((x > i) && (x <= (i + myView.getWidth_tile())))
+            for (int j = 0; j < myView.getHeight_grid(); j += myView.getHeight_tile()) {
+
+                if (((x > i) && (x <= (i + myView.getWidth_tile())))
                     && ((y > j) && (y <= (j + myView.getHeight_tile())))) {
 
                         setBox_x((i / myView.getWidth_tile()));
                         setBox_y((j / myView.getHeight_tile()));
                         Log.i("OnTouch", "On touch tracking is working");
                         setHasTouched(true);
-               }
-               else setHasTouched(false);
-           }
-       }
+                }
+                else setHasTouched(false);
+            }
+        }
 
        //Checking paint color
        if (x == getBox_x() && y == getBox_y() && myView.getTilePaint() == myView.boardPaint_invis){
@@ -208,7 +210,7 @@ public class RummiHumanPlayer extends GameHumanPlayer implements View.OnTouchLis
 
        myView.invalidate();
 
-       return false;
+       return true;
 
     }
 
