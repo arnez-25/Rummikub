@@ -90,7 +90,7 @@ public class RummiView extends SurfaceView {
 
         tileNumPaint.setColor(tileColor_black);
         tileNumPaint.setStyle(Paint.Style.FILL);
-        tileNumPaint.setTextSize(60);
+        tileNumPaint.setTextSize(40);
 
         /*tilePaint_black.setColor(tileColor_black);
         tilePaint_black.setStyle(Paint.Style.FILL);
@@ -202,7 +202,7 @@ public class RummiView extends SurfaceView {
                 //System.out.println(pos_x2);
 
                 c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, getTilePaint());
-                c.drawCircle(pos_x1 + 85, pos_y1 + 115, (getWidth_tile() / 4), getTilePaint2());
+                c.drawCircle(pos_x1 + 62, pos_y1 + 60, (getWidth_tile() / 4), getTilePaint2());
 
                 //This section is for the tile numbers
 
@@ -247,9 +247,13 @@ public class RummiView extends SurfaceView {
 
                 if ((newState != null) && (cntr < newState.getPlayerHand().get(0).size())) {
 
-                    if (newState.getPlayerHand().get(0).get(cntr).isVisible()) {
+                    Tile tmp = newState.getPlayerHand().get(0).get(cntr);
+
+                    if (tmp.isVisible()) {
                         c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, getTilePaint());
                         c.drawCircle(pos_x1 + 62, pos_y1 + 60, (getWidth_tile() / 4), getTilePaint2());
+                        createTileText(c, tmp);
+                        c.drawText("" + tmp.getTileNum(), pos_x1 + 60, pos_y1 + 62, tileNumPaint);
                         //this.invalidate();
                     }
 
@@ -268,28 +272,31 @@ public class RummiView extends SurfaceView {
         //this.invalidate();
     }
 
-    public void createTileText(Canvas c, int i, int j) {
+    public void createTileText(Canvas c, Tile t) {
 
+        /*
         ArrayList<Tile> boardClone = newState.getBoard();
 
         //Get the tile from the board
         Tile t = boardClone.get((i+1)*j);
 
+
+         */
         //Draw the text depending on the position and color of the tile
         switch (t.getColor()) {
-            case 0:
+            case 1:
                 //black tiles
                 tileNumPaint.setColor(tileColor_black);
                 break;
-            case 1:
+            case 2:
                 //blue tiles
                 tileNumPaint.setColor(tileColor_blue);;
                 break;
-            case 2:
+            case 3:
                 //orange tiles
                 tileNumPaint.setColor(tileColor_orange);
                 break;
-            case 3:
+            case 4:
                 //red tiles
                 tileNumPaint.setColor(tileColor_red);
                 break;
