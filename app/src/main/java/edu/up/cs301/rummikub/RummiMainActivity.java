@@ -1,13 +1,10 @@
 package edu.up.cs301.rummikub;
 
-import android.view.View;
-
 import java.util.ArrayList;
 
 import edu.up.cs301.game.GameMainActivity;
 import edu.up.cs301.game.GamePlayer;
 import edu.up.cs301.game.LocalGame;
-import edu.up.cs301.game.R;
 import edu.up.cs301.game.config.GameConfig;
 import edu.up.cs301.game.config.GamePlayerType;
 
@@ -38,7 +35,7 @@ public class RummiMainActivity extends GameMainActivity {
             }});
         playerTypes.add(new GamePlayerType("Computer Player") {
             public GamePlayer createPlayer(String name) {
-                return new AI(name);
+                return new EasyAI(name);
             }});
 
         // Create a game configuration class for Rummikub:
