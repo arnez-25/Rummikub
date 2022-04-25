@@ -68,6 +68,8 @@ public class RummiView extends SurfaceView {
     public RummiView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
+
+
         setWillNotDraw(false);
 
         tmp.setColor(tileColor);
@@ -112,6 +114,8 @@ public class RummiView extends SurfaceView {
         tilePaint_orange.setTextSize(60);*/
 
     }
+
+
 
     @Override
     public void onDraw(Canvas c) {
@@ -243,7 +247,7 @@ public class RummiView extends SurfaceView {
          * Here we're essentially doing what we did earlier within the createGrid method.
          * This nested for-loop is making a 2x12 array of invisible "tile" drawings to be
          * colored in earlier with onTouch() methods (represents the hand)
-        */
+         */
 
         int colCount = 12;
         int rowCount = 2;
@@ -255,10 +259,10 @@ public class RummiView extends SurfaceView {
 
             for (int j = 0; j < colCount; j++) {
 
-                pos_x1 = (getWidth_tile() * (j))        + 60;
-                pos_y1 = (getHeight_tile() * (i))       + height_tray + 10;
-                pos_x2 = (getWidth_tile() * (j + 1))    + 60;
-                pos_y2 = (getHeight_tile() * (i + 1))   + height_tray + 10;
+                pos_x1 = (getWidth_tile() * (j)) + 60;
+                pos_y1 = (getHeight_tile() * (i)) + height_tray + 10;
+                pos_x2 = (getWidth_tile() * (j + 1)) + 60;
+                pos_y2 = (getHeight_tile() * (i + 1)) + height_tray + 10;
 
                 if ((newState != null) && (cntr < newState.getPlayerHand().get(0).size())) {
 
@@ -270,9 +274,7 @@ public class RummiView extends SurfaceView {
                         createTileText(c, tmp);
                         c.drawText("" + tmp.getTileNum(), pos_x1 + 42, pos_y1 + 70, tileNumPaint);
                         //this.invalidate();
-                    }
-
-                    else if (!newState.getPlayerHand().get(0).get(cntr).isVisible()){
+                    } else if (!newState.getPlayerHand().get(0).get(cntr).isVisible()) {
                         c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, getTrayPaint_invis());
                         //this.invalidate();
                     }
@@ -282,10 +284,9 @@ public class RummiView extends SurfaceView {
 
             }
         }
-
-        Log.i("createTray", "createTray is calling");
-        Log.i("createTray", "# tiles in hand: " + newState.getPlayerHand().get(0).size());
-        Log.i("createTray", "Player 0 Tiles: " + myPlayer);
+            /*Log.i("createTray", "createTray is calling");
+            Log.i("createTray", "# tiles in hand: " + newState.getPlayerHand().get(0).size());
+            Log.i("createTray", "Player 0 Tiles: " + myPlayer);*/
         //this.invalidate();
     }
 
