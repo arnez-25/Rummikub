@@ -88,6 +88,7 @@ public class RummiGameState extends GameState {
      * @param copy - The Gamestate being copied
      * @param PlayerId - an int meant to help nullify the deck the player shouldnt see
      */
+
     public RummiGameState(RummiGameState copy, int PlayerId){
         this.playerId = copy.getPlayerId();
         this.timer = copy.getTimer();
@@ -122,7 +123,8 @@ public class RummiGameState extends GameState {
                 + "Currently Player " + playerId + "'s Turn     \n"
                 + "Timer: " + timer + "s                        \n\n"
                 + "Player 0 Hand:                               \n"
-                + player_hand.get(0).toString() + "             \n\n"
+                + player_hand
+                .get(0).toString() + "             \n\n"
                 + "Player 1 Hand:                               \n"
                 + player_hand.get(1).toString() + "             \n\n"
                 + "Tiles on Board:                              \n"
@@ -190,7 +192,7 @@ public class RummiGameState extends GameState {
 
             }
         }
-        shuffle();
+        //shuffle();
 
     }
 

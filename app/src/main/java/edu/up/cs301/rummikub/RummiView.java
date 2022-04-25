@@ -29,10 +29,6 @@ public class RummiView extends SurfaceView {
     public ArrayList<Tile> hand;
     //public Tile info; might wanna get rid of?????
 
-
-
-
-
     private static final int tileColor          = Color.parseColor("#F9E2D0");
     private static final int tileColor2         = Color.parseColor("#E2cfb5");
     private static final int boardColor_invis   = Color.parseColor("#2C3493");
@@ -216,7 +212,6 @@ public class RummiView extends SurfaceView {
                         c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, getBoardPaint_invis());
                         //this.invalidate();
                     }
-                }
 
                 //This section is for the tile numbers
 
@@ -279,8 +274,9 @@ public class RummiView extends SurfaceView {
                 }
                 newState.toString();
 
-                cntr++;
+                    cntr++;
 
+                } else return;
             }
         }
 
