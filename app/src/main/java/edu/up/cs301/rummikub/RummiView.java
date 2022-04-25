@@ -265,13 +265,14 @@ public class RummiView extends SurfaceView {
                         createTileText(tmp);
                         c.drawText("" + tmp.getTileNum(), pos_x1 + 42, pos_y1 + 70, tileNumPaint);
                         //this.invalidate();
+                        Log.i("createTray", "drawing tile");
                     }
 
                     else if (!newState.getPlayerHand().get(0).get(cntr).isVisible()){
                         c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, getTrayPaint_invis());
                         //this.invalidate();
                     }
-                } else return;
+                }
                 cntr++;
             }
         }
