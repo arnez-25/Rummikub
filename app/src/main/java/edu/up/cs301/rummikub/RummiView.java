@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 /**
  * @authors Jacob Arnez, Maja Elliott, Dylan Kim, Chase Ohmstede
- * @version 3/31/2022
+ * @version 4/23/2022
  *
  * This class is designed to draw our Rummikub tiles.
  *
@@ -56,8 +56,6 @@ public class RummiView extends SurfaceView {
     Paint tilePaint_blue        = new Paint();
     Paint tilePaint_red         = new Paint();
     Paint tilePaint_orange      = new Paint();*/
-
-    private ArrayList<Tile> newHand = new ArrayList<Tile>(0);
 
     private float pos_x1, pos_y1, pos_x2, pos_y2;
 
@@ -119,13 +117,8 @@ public class RummiView extends SurfaceView {
     public void onDraw(Canvas c) {
         //Need to add: Way to get info for drawings (location, height, width)
         createGrid(c);
-        //createTile(c);
         createTray(c);
         //createTile(c);
-        //this.invalidate();
-        createTile(c);
-        //createTileText(c);
-        //paint_hand(c);
 
         Log.i("onDraw", "onDraw is drawing");
     }
@@ -195,6 +188,7 @@ public class RummiView extends SurfaceView {
         // invis tile placement
 
         float pos_x1, pos_y1, pos_x2, pos_y2;
+        int cntr = 0;
 
         for (int i = 0; i < colCount; i++) {
 
@@ -206,8 +200,23 @@ public class RummiView extends SurfaceView {
                 pos_y2 = (height_grid / rowCount) * (j + 1);
                 //System.out.println(pos_x2);
 
-                c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, getTilePaint());
-                c.drawCircle(pos_x1 + 62, pos_y1 + 60, (getWidth_tile() / 4), getTilePaint2());
+                if ((newState != null) && (cntr < newState.getBoard().size())) {
+
+                    Tile tmp = newState.getBoard().get(cntr);
+
+                    if (tmp.isVisible()) {
+                        c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, getTilePaint());
+                        c.drawCircle(pos_x1 + 62, pos_y1 + 60, (getWidth_tile() / 4), getTilePaint2());
+                        createTileText(c, tmp);
+                        c.drawText("" + tmp.getTileNum(), pos_x1 + 42, pos_y1 + 70, tileNumPaint);
+                        //this.invalidate();
+                    }
+
+                    else if (!newState.getPlayerHand().get(0).get(cntr).isVisible()){
+                        c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, getBoardPaint_invis());
+                        //this.invalidate();
+                    }
+                }
 
                 //This section is for the tile numbers
 
@@ -216,6 +225,7 @@ public class RummiView extends SurfaceView {
                     setHeight_tile(pos_y2);
                 }
 
+                cntr++;
                 //this.invalidate();
             }
         }
@@ -258,7 +268,7 @@ public class RummiView extends SurfaceView {
                         c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, getTilePaint());
                         c.drawCircle(pos_x1 + 62, pos_y1 + 60, (getWidth_tile() / 4), getTilePaint2());
                         createTileText(c, tmp);
-                        c.drawText("" + tmp.getTileNum(), pos_x1 + 60, pos_y1 + 62, tileNumPaint);
+                        c.drawText("" + tmp.getTileNum(), pos_x1 + 42, pos_y1 + 70, tileNumPaint);
                         //this.invalidate();
                     }
 
@@ -273,8 +283,10 @@ public class RummiView extends SurfaceView {
 
             }
         }
+
         Log.i("createTray", "createTray is calling");
         Log.i("createTray", "# tiles in hand: " + newState.getPlayerHand().get(0).size());
+        Log.i("createTray", "Player 0 Tiles: " + myPlayer);
         //this.invalidate();
     }
 
@@ -285,7 +297,6 @@ public class RummiView extends SurfaceView {
 
         //Get the tile from the board
         Tile t = boardClone.get((i+1)*j);
-
 
          */
         //Draw the text depending on the position and color of the tile
