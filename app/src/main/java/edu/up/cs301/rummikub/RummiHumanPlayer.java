@@ -184,8 +184,6 @@ public class RummiHumanPlayer extends GameHumanPlayer implements View.OnTouchLis
         else if (button.getId() == R.id.holdButton) {
             game.sendAction(new PigHoldAction(this));
         } */
-
-        myView.invalidate();
     }// onClick
 
     @Override
@@ -212,15 +210,11 @@ public class RummiHumanPlayer extends GameHumanPlayer implements View.OnTouchLis
                         setHasTouched(true);
                         game.sendAction(new SelectTile(this));
                 }
-                else setHasTouched(false);
+                else {
+                    setHasTouched(false);
+                }
             }
         }
-
-       //Checking paint color
-       if (x == getBox_x() && y == getBox_y() && myView.getTilePaint() == myView.boardPaint_invis){
-           myView.setTilePaint(myView.tilePaint);
-       }
-
         game.sendAction(new EndTurn(this));
 
        return true;
