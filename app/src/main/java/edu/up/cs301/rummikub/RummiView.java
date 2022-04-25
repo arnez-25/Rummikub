@@ -202,9 +202,10 @@ public class RummiView extends SurfaceView {
                     if (tmp.isVisible()) {
                         c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, getTilePaint());
                         c.drawCircle(pos_x1 + 62, pos_y1 + 60, (getWidth_tile() / 4), getTilePaint2());
-                        createTileText(c, tmp);
+                        createTileText(tmp);
                         c.drawText("" + tmp.getTileNum(), pos_x1 + 42, pos_y1 + 70, tileNumPaint);
                         //this.invalidate();
+
                     } else if (!newState.getPlayerHand().get(0).get(cntr).isVisible()) {
                         c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, getBoardPaint_invis());
                         //this.invalidate();
@@ -260,7 +261,7 @@ public class RummiView extends SurfaceView {
                     if (tmp.isVisible()) {
                         c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, getTilePaint());
                         c.drawCircle(pos_x1 + 62, pos_y1 + 60, (getWidth_tile() / 4), getTilePaint2());
-                        createTileText(c, tmp);
+                        createTileText(tmp);
                         c.drawText("" + tmp.getTileNum(), pos_x1 + 42, pos_y1 + 70, tileNumPaint);
                         //this.invalidate();
                     }
@@ -280,7 +281,7 @@ public class RummiView extends SurfaceView {
         //this.invalidate();
     }
 
-    public void createTileText(Canvas c, Tile t) {
+    public void createTileText(Tile t) {
 
         /*
         ArrayList<Tile> boardClone = newState.getBoard();
