@@ -165,6 +165,7 @@ public class RummiHumanPlayer extends GameHumanPlayer implements View.OnTouchLis
         if (button.getId() == R.id.button_draw){
             game.sendAction(new DrawTile(this));
             Log.d("Button_draw", "onClick: DrawTile Gameaction sent");
+            game.sendAction(new EndTurn(this));
         }
 
         /*

@@ -37,6 +37,9 @@ public class RummiMainActivity extends GameMainActivity {
             public GamePlayer createPlayer(String name) {
                 return new EasyAI(name);
             }});
+        playerTypes.add(new GamePlayerType("Smart Computer Player") {
+            public GamePlayer createPlayer(String name) { return new HardAI(name); }});
+
 
         // Create a game configuration class for Rummikub:
         GameConfig defaultConfig = new GameConfig(playerTypes, 2, 2, "Rummikub", PORT_NUMBER);
