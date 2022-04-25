@@ -64,6 +64,8 @@ public class RummiView extends SurfaceView {
     public RummiView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
+
+
         setWillNotDraw(false);
 
         tmp.setColor(tileColor);
@@ -108,6 +110,8 @@ public class RummiView extends SurfaceView {
         tilePaint_orange.setTextSize(60);*/
 
     }
+
+
 
     @Override
     public void onDraw(Canvas c) {
