@@ -1,6 +1,8 @@
 package edu.up.cs301.rummikub;
 
+import android.content.Context;
 import android.graphics.Canvas;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
@@ -113,7 +115,7 @@ public class RummiHumanPlayer extends GameHumanPlayer implements View.OnTouchLis
     public void setAsGui(GameMainActivity activity) {
 
         // remember the activity
-        myActivity = activity;
+        this.myActivity = activity;
 
         // load the layout resource for our GUI
         activity.setContentView(R.layout.rummikub_layout);
@@ -152,6 +154,9 @@ public class RummiHumanPlayer extends GameHumanPlayer implements View.OnTouchLis
      */
     public void onClick(View button) {
 
+        myActivity.setContentView(R.layout.rummikub_layout);
+        myView = myActivity.findViewById(R.id.rummiView);
+
         Log.d("OnClick", "onClick: Onclick method called");
         if (button.getId() == R.id.button_quit) {
             System.exit(0);
@@ -160,7 +165,6 @@ public class RummiHumanPlayer extends GameHumanPlayer implements View.OnTouchLis
         if (button.getId() == R.id.button_draw){
             game.sendAction(new DrawTile(this));
             Log.d("Button_draw", "onClick: DrawTile Gameaction sent");
-            myView.invalidate();
         }
 
         /*
@@ -180,6 +184,8 @@ public class RummiHumanPlayer extends GameHumanPlayer implements View.OnTouchLis
         else if (button.getId() == R.id.holdButton) {
             game.sendAction(new PigHoldAction(this));
         } */
+
+        myView.invalidate();
     }// onClick
 
     @Override
@@ -190,7 +196,7 @@ public class RummiHumanPlayer extends GameHumanPlayer implements View.OnTouchLis
         Log.i("OnTouch", "X Coord: " + x);
         Log.i("OnTouch", "Y Coord: " + y);
 
-        myView.invalidate();
+        //myView.invalidate();
 
         // hitboxes for tiles (board)
         for (int i = 0; i < myView.getWidth_grid(); i += myView.getWidth_tile()) {

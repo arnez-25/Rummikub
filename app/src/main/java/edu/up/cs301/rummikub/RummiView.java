@@ -29,10 +29,6 @@ public class RummiView extends SurfaceView {
     public ArrayList<Tile> hand;
     //public Tile info; might wanna get rid of?????
 
-
-
-
-
     private static final int tileColor          = Color.parseColor("#F9E2D0");
     private static final int tileColor2         = Color.parseColor("#E2cfb5");
     private static final int boardColor_invis   = Color.parseColor("#2C3493");
@@ -198,9 +194,9 @@ public class RummiView extends SurfaceView {
 
             for (int j = 0; j < rowCount; j++) {
 
-                pos_x1 = (width_grid  / colCount) * (i);
+                pos_x1 = (width_grid / colCount) * (i);
                 pos_y1 = (height_grid / rowCount) * (j);
-                pos_x2 = (width_grid  / colCount) * (i + 1);
+                pos_x2 = (width_grid / colCount) * (i + 1);
                 pos_y2 = (height_grid / rowCount) * (j + 1);
                 //System.out.println(pos_x2);
 
@@ -211,32 +207,31 @@ public class RummiView extends SurfaceView {
                     if (tmp.isVisible()) {
                         c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, getTilePaint());
                         c.drawCircle(pos_x1 + 62, pos_y1 + 60, (getWidth_tile() / 4), getTilePaint2());
-                        createTileText(c, tmp);
+                        createTileText(tmp);
                         c.drawText("" + tmp.getTileNum(), pos_x1 + 42, pos_y1 + 70, tileNumPaint);
                         //this.invalidate();
-                    }
 
-                    else if (!newState.getPlayerHand().get(0).get(cntr).isVisible()){
+                    } else if (!newState.getPlayerHand().get(0).get(cntr).isVisible()) {
                         c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, getBoardPaint_invis());
                         //this.invalidate();
                     }
+
+                    //This section is for the tile numbers
+
+                    if ((i == 0) && (j == 0)) {
+                        setWidth_tile(pos_x2);
+                        setHeight_tile(pos_y2);
+                    }
+
+                    cntr++;
+                    //this.invalidate();
                 }
-
-                //This section is for the tile numbers
-
-                if ((i == 0) && (j == 0)) {
-                    setWidth_tile(pos_x2);
-                    setHeight_tile(pos_y2);
-                }
-
-                cntr++;
-                //this.invalidate();
             }
         }
     }
 
     /* in charge of drawing the player's hand tray for the .xml */
-    public void createTray(Canvas c) {
+    public void createTray(Canvas c){
 
         setWidth_tray(getWidth() - 20);
         setHeight_tray((((float) getHeight() / 3) * 2) + 20);
@@ -271,7 +266,7 @@ public class RummiView extends SurfaceView {
                     if (tmp.isVisible()) {
                         c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, getTilePaint());
                         c.drawCircle(pos_x1 + 62, pos_y1 + 60, (getWidth_tile() / 4), getTilePaint2());
-                        createTileText(c, tmp);
+                        createTileText(tmp);
                         c.drawText("" + tmp.getTileNum(), pos_x1 + 42, pos_y1 + 70, tileNumPaint);
                         //this.invalidate();
                     }
@@ -280,11 +275,8 @@ public class RummiView extends SurfaceView {
                         c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, getTrayPaint_invis());
                         //this.invalidate();
                     }
-                }
-                newState.toString();
-
+                } else return;
                 cntr++;
-
             }
         }
 
@@ -294,7 +286,7 @@ public class RummiView extends SurfaceView {
         //this.invalidate();
     }
 
-    public void createTileText(Canvas c, Tile t) {
+    public void createTileText(Tile t) {
 
         /*
         ArrayList<Tile> boardClone = newState.getBoard();
