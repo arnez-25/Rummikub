@@ -113,7 +113,6 @@ public class RummiView extends SurfaceView {
     public void onDraw(Canvas c) {
         //Need to add: Way to get info for drawings (location, height, width)
         createGrid(c);
-        createTray(c);
         //createTile(c);
 
         Log.i("onDraw", "onDraw is drawing");
@@ -190,9 +189,9 @@ public class RummiView extends SurfaceView {
 
             for (int j = 0; j < rowCount; j++) {
 
-                pos_x1 = (width_grid  / colCount) * (i);
+                pos_x1 = (width_grid / colCount) * (i);
                 pos_y1 = (height_grid / rowCount) * (j);
-                pos_x2 = (width_grid  / colCount) * (i + 1);
+                pos_x2 = (width_grid / colCount) * (i + 1);
                 pos_y2 = (height_grid / rowCount) * (j + 1);
                 //System.out.println(pos_x2);
 
@@ -206,28 +205,27 @@ public class RummiView extends SurfaceView {
                         createTileText(c, tmp);
                         c.drawText("" + tmp.getTileNum(), pos_x1 + 42, pos_y1 + 70, tileNumPaint);
                         //this.invalidate();
-                    }
-
-                    else if (!newState.getPlayerHand().get(0).get(cntr).isVisible()){
+                    } else if (!newState.getPlayerHand().get(0).get(cntr).isVisible()) {
                         c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, getBoardPaint_invis());
                         //this.invalidate();
                     }
 
-                //This section is for the tile numbers
+                    //This section is for the tile numbers
 
-                if ((i == 0) && (j == 0)) {
-                    setWidth_tile(pos_x2);
-                    setHeight_tile(pos_y2);
+                    if ((i == 0) && (j == 0)) {
+                        setWidth_tile(pos_x2);
+                        setHeight_tile(pos_y2);
+                    }
+
+                    cntr++;
+                    //this.invalidate();
                 }
-
-                cntr++;
-                //this.invalidate();
             }
         }
     }
 
     /* in charge of drawing the player's hand tray for the .xml */
-    public void createTray(Canvas c) {
+    public void createTray(Canvas c){
 
         setWidth_tray(getWidth() - 20);
         setHeight_tray((((float) getHeight() / 3) * 2) + 20);
@@ -271,12 +269,8 @@ public class RummiView extends SurfaceView {
                         c.drawRect(pos_x1 + 10, pos_y1 + 10, pos_x2 - 10, pos_y2 - 10, getTrayPaint_invis());
                         //this.invalidate();
                     }
-                }
-                newState.toString();
-
-                    cntr++;
-
                 } else return;
+                cntr++;
             }
         }
 
