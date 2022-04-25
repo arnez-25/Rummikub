@@ -113,6 +113,7 @@ public class RummiView extends SurfaceView {
     public void onDraw(Canvas c) {
         //Need to add: Way to get info for drawings (location, height, width)
         createGrid(c);
+        createTray(c);
         //createTile(c);
 
         Log.i("onDraw", "onDraw is drawing");
