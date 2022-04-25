@@ -24,7 +24,7 @@ import java.util.ArrayList;
 public class RummiView extends SurfaceView {
     //setting up paints and DrawTileData reference
 
-    public RummiGameState newState = new RummiGameState();
+    public RummiGameState newState = new RummiGameState();  // Gamestate only meant to test code
     public RummiHumanPlayer myPlayer;
     public ArrayList<Tile> hand;
     //public Tile info; might wanna get rid of?????
@@ -267,6 +267,7 @@ public class RummiView extends SurfaceView {
                         //this.invalidate();
                     }
                 }
+                newState.toString();
 
                 cntr++;
 

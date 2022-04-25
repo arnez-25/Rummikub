@@ -236,24 +236,21 @@ public class RummiGameState extends GameState {
     }
 
     /**
-     * Helper Method for making a deep copy for the copy constructor
+     * deep_copy
+     * Helper method for making a deep
      *
-     * Unsure weather it works or not but it compiles ¯\_(ツ)_/¯
+     * copy is copying reference
+     *
+     *
+     * @param copy
+     * @param reference
      */
     public void deep_copy(ArrayList<Tile> copy, ArrayList<Tile> reference){
         copy.clear();
         for(Tile t : reference){                       //This section could probably be turned into a helper method
             copy.add(new Tile(t));         // I don't understand why the try-catch is necessary
         }
-         /*
-          External Citation
-          Date: 31 March 2022
-          Problem: Creating deep copy of ArrayList
-          Resource:
-          https://codippa.com/deep-copy-arraylist-java/
-          Solution: I needed to implement Cloneable interface to Tile then iterate over the List and clone them into the copy
-          I don't understand why the try-catch is necessary, but no red squiggly make me happy
-         */
+
     }
 
 

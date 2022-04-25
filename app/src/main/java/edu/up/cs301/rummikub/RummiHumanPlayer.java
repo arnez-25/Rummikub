@@ -42,7 +42,7 @@ public class RummiHumanPlayer extends GameHumanPlayer implements View.OnTouchLis
 
     /* this is the android activity we're running */
     private GameMainActivity myActivity;
-    private RummiGameState pState;
+    private RummiGameState pState; // how can RummiGameState give card info to MyView
     private RummiView myView;
 
     private float box_x = 0;
@@ -69,6 +69,7 @@ public class RummiHumanPlayer extends GameHumanPlayer implements View.OnTouchLis
     @Override
     public void receiveInfo(GameInfo info) {
         pState = (RummiGameState) info;
+        myView.hand = pState.getPlayerHand().get(0);
 
         textview_timer.setText("100s");
         textview_oppo.setText( "Opponent's Hand Count: " + pState.getPlayerHand().get(1).size());
