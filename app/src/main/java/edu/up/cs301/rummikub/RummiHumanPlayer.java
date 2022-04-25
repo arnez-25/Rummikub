@@ -197,6 +197,8 @@ public class RummiHumanPlayer extends GameHumanPlayer implements View.OnTouchLis
         //myView.invalidate();
 
         // hitboxes for tiles (board)
+        //Might be valuable to check where on the board is being touched
+        //if
         for (int i = 0; i < myView.getWidth_grid(); i += myView.getWidth_tile()) {
 
             for (int j = 0; j < myView.getHeight_grid(); j += myView.getHeight_tile()) {

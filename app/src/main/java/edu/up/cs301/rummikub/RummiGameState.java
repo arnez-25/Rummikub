@@ -9,7 +9,7 @@ import edu.up.cs301.game.infoMsg.GameState;
 
 /**
  * @authors Jacob Arnez, Maja Elliott, Dylan Kim, Chase Ohmstede
- * @version 3/17/2022
+ * @version 4/24/2022
  *
  * (description here)
  *
@@ -86,11 +86,19 @@ public class RummiGameState extends GameState {
      * meant for players
      *
      * @param copy - The Gamestate being copied
-     * @param PlayerId - an int meant to help nullify the deck the player shouldnt see
+     * @param pId - an int meant to help nullify the deck the player shouldnt see
      */
 
-    public RummiGameState(RummiGameState copy, int PlayerId){
-        this.playerId = copy.getPlayerId();
+    public RummiGameState(RummiGameState copy, int pId){
+        /*
+          External Citation
+          Date: 24 April 2022
+          Problem: Issue with mutating constructors
+          Resource: Noelle Miller (Upper Classmen
+          Solution: We had an issue with our copy constructor and our master constructor printing
+          completely different values. It turned out changing this.playerId to equal pId fixed it.
+         */
+        this.playerId = pId;
         this.timer = copy.getTimer();
 
         //Setting the 2D array for the copy and making them a deep copy
@@ -102,7 +110,7 @@ public class RummiGameState extends GameState {
         deep_copy(this.deck, copy.getDeck());
 
         //replace the tiles in the other player's hand with blanks to hide them
-        ArrayList<Tile> secret = player_hand.get(1-playerId);
+        ArrayList<Tile> secret = player_hand.get(1-pId);
         int numTiles = secret.size();
         secret.clear();
         for(int i = 0; i < numTiles; ++i) {
@@ -204,7 +212,7 @@ public class RummiGameState extends GameState {
     //Helper function that sets up the 2D list
     private void setup(ArrayList<ArrayList<Tile>> list, ArrayList<Tile> deck){
         setup_pile(deck); //Instantiating all the tiles in the deck
-        //shuffle();
+        //Collections.shuffle(deck);
 
         //First two are the player hands
         list.add(new ArrayList<Tile>());

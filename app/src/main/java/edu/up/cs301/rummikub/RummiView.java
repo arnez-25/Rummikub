@@ -96,23 +96,6 @@ public class RummiView extends SurfaceView {
         tileNumPaint.setColor(tileColor_black);
         tileNumPaint.setStyle(Paint.Style.FILL);
         tileNumPaint.setTextSize(40);
-
-        /*tilePaint_black.setColor(tileColor_black);
-        tilePaint_black.setStyle(Paint.Style.FILL);
-        tilePaint_black.setTextSize(60);
-
-        tilePaint_blue.setColor(tileColor_blue);
-        tilePaint_blue.setStyle(Paint.Style.FILL);
-        tilePaint_blue.setTextSize(60);
-
-        tilePaint_red.setColor(tileColor_red);
-        tilePaint_red.setStyle(Paint.Style.FILL);
-        tilePaint_red.setTextSize(60);
-
-        tilePaint_orange.setColor(tileColor_orange);
-        tilePaint_orange.setStyle(Paint.Style.FILL);
-        tilePaint_orange.setTextSize(60);*/
-
     }
 
 
@@ -284,9 +267,9 @@ public class RummiView extends SurfaceView {
 
             }
         }
-            /*Log.i("createTray", "createTray is calling");
+            Log.i("createTray", "createTray is calling");
             Log.i("createTray", "# tiles in hand: " + newState.getPlayerHand().get(0).size());
-            Log.i("createTray", "Player 0 Tiles: " + myPlayer);*/
+            Log.i("createTray", "Player 0 Tiles: " + myPlayer);
         //this.invalidate();
     }
 
